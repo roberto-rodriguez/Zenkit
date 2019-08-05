@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import authReducer from "../pages/auth/authReducer"; 
-import sprintReducer from "../pages/sprint/sprintReducer";
+import authReducer from "../pages/auth/auth.reducer"; 
+import sprintReducer from "../pages/sprint/sprint.reducer";
 
 const rootReducer = combineReducers({
   auth: authReducer, 

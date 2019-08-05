@@ -11,9 +11,8 @@ class NavBar extends Component {
     return (
       <nav style={{ backgroundColor: "#0e0843" }}>
         <div className="nav-wrapper">
-          <NavLink to="/" className="brand-logo">
-            <i className="large material-icons">extension</i>
-            Lego Tracker
+          <NavLink to="/" className="brand-logo"> 
+            Zenkit
           </NavLink>
           <ul
             id="nav-mobile"
