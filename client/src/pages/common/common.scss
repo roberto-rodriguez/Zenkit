@@ -1,0 +1,42 @@
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.centered-column {
+  @extend .centered;
+  flex-direction: column;
+}
+
+.content {
+  width: 80%;
+  margin: 0 auto;
+}  
+
+.section,
+.col {
+  background-color: white;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.brand-logo {
+  margin-left: 5%;
+  font-size: 24px !important;
+}
+
+.card-panel {
+  h6 {
+    line-height: 23px;
+  }
+}
+
+h2,
+h3,
+h4 {
+  font-family: 'Raleway', sans-serif;
+}
