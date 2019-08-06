@@ -6,12 +6,18 @@ import * as authActions from "../../auth/auth.actions";
 
 class NavBar extends Component {
   render() {
-    var { appStarted, userId, name, logout } = this.props;
+    var { appStarted, userId, name, logout, transparent } = this.props;
 
     return (
-      <nav style={{ backgroundColor: "#0e0843" }}>
+      <nav
+        style={{
+          position: "absolute",
+          zIndex: 1000,
+          backgroundColor: transparent ? "transparent" : "#0e0843"
+        }}
+      >
         <div className="nav-wrapper">
-          <NavLink to="/" className="brand-logo"> 
+          <NavLink to="/" className="brand-logo">
             Zenkit
           </NavLink>
           <ul

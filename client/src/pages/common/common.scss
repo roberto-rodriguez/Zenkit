@@ -13,7 +13,7 @@
 .content {
   width: 80%;
   margin: 0 auto;
-}  
+}
 
 .section,
 .col {
@@ -39,4 +39,10 @@ h2,
 h3,
 h4 {
   font-family: 'Raleway', sans-serif;
+}
+
+.error-text {
+  color: red;
+  font-size: 11px;
+  margin-bottom: 5px;
 }

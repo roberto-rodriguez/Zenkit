@@ -17,10 +17,10 @@ passport.use(
   new LocalStrategy(function(username, password, done) {
     var user = fakeData.user;
 
-    if (username == "a") {
+    if (username == "a" && password == "a") {
       return done(null, user);
     } else {
-      return done(null, false, { message: "Incorrect password." });
+      return done(null, false);
     }
 
     // User.findOne({ username: username }, function(err, user) {

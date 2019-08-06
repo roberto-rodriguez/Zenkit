@@ -2,14 +2,16 @@ import axios from "axios";
 
 window.axios = axios; //For testing in the web console
 
-export const login = (history, username, password) => async dispatch => {
-  username = "a";
-  password = "a";
-  const res = await axios.post("/api/auth/login", { username, password });
+export const login = (history, data, errorCallback) => async dispatch => {
+  try {
+    const res = await axios.post("/api/auth/login", data);
 
-  if (res.data) {
-    dispatch({ type: "SET_USER", data: res.data });
-    history.push("/");
+    if (res.data) {
+      dispatch({ type: "SET_USER", data: res.data });
+      history.push("/");
+    }
+  } catch (err) {
+    errorCallback();
   }
 };
 
