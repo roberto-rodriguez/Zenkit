@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieSession = require("cookie-session");
+var cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 var flash = require("connect-flash");
@@ -9,7 +10,7 @@ require("./server/services/passport");
 const app = express();
 
 app.use(bodyParser.json());
-
+app.use(cookieParser());
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,

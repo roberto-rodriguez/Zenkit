@@ -31,8 +31,8 @@ class SprintList extends Component {
             width: "100%"
           }}
         >
-          {sprintList.map(s => (
-            <div>
+          {sprintList.map((s, i) => (
+            <div key={i}>
               <NavLink to={"/sprint/" + s.id}>{s.name}</NavLink>
               <br />
               <br />

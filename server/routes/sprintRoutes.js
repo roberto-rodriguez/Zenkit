@@ -23,7 +23,7 @@ module.exports = app => {
   });
 
   app.get("/api/sprint/list", requireLogin, (req, res) => {
-    const list = fakeData.sprints;
+    const list = fakeData.sprints; 
     res.send(list);
   });
 };
