@@ -1,10 +1,14 @@
 import React from "react";
 
-export default ({ input, label, meta: { error, touched } }) => {
+export default ({ input, label, meta }) => {
+  meta = meta || {};
+  const { error, touched } = meta;
   return (
     <div>
       <label>{label}</label>
-      <input {...input} />
+      <div className="text-field">
+        <input {...input} />
+      </div>
       <div className="error-text">{touched && error}</div>
     </div>
   );
