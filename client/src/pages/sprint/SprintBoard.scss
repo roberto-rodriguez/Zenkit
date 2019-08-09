@@ -1,0 +1,33 @@
+.sprint-board.header{
+  padding: 74px 10px 10px;
+
+  .sprint-detail{
+    margin-right: 20px;
+  }
+}
+.sprint-board.kanban{
+  .task-column{
+    min-height: 500px;
+
+    .task-card{
+      .task-header{
+        text-align: center;
+
+        .user-button{
+          text-align: center;
+          position: absolute;
+          top: -10px;
+          left: -10px;
+        }
+        .completion{
+          margin-top: -10px;
+          display: block;
+        }
+      }
+      .task-title{
+        font-size: 24px;
+        font-weight: 300;
+      }
+    }
+  }
+}
