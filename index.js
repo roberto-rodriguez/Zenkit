@@ -24,6 +24,7 @@ app.use(flash());
 
 require("./server/routes/authRoutes")(app); //1- Express look if request match any of these routes
 require("./server/routes/sprintRoutes")(app); //2- Express look if request match any of these routes
+require("./server/routes/uipropsRoutes")(app); //3- Express look if request match any of these routes
 
 if (process.env.NODE_ENV === "production") {
   // Express  will serve up production assets

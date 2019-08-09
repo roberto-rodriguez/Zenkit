@@ -1,7 +1,5 @@
 import axios from "axios";
-
-window.axios = axios; //For testing in the web console
-
+  
 export const login = (history, data, errorCallback) => async dispatch => {
   try {
     const res = await axios.post("/api/auth/login", data);
