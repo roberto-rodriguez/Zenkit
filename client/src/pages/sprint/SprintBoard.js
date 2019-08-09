@@ -59,22 +59,22 @@ class SprintBoard extends Component {
           <div
             className="col s3"
           >
-            <TaskColumn title="TO DO" tasks={tasks} status="todo" className="green darken-4"/>
+            <TaskColumn title="TO DO" tasks={tasks} status="TODO" className="green darken-4"/>
           </div>
           <div
             className="col s3"
           >
-            <TaskColumn title="DOING" tasks={tasks} status="doing" className="red darken-2"/>
+            <TaskColumn title="DOING" tasks={tasks} status="DOING" className="red darken-2"/>
           </div>
           <div
             className="col s3"
           >
-            <TaskColumn title="REVIEW" tasks={tasks} status="review" className="grey darken-2"/>
+            <TaskColumn title="REVIEW" tasks={tasks} status="REVIEW" className="grey darken-2"/>
           </div>
           <div
             className="col s3"
           >
-            <TaskColumn title="DONE" tasks={tasks} status="done" className="blue darken-4"/>
+            <TaskColumn title="DONE" tasks={tasks} status="DONE" className="blue darken-4"/>
           </div>
         </div>
       </Page>

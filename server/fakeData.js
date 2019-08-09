@@ -47,7 +47,35 @@ module.exports = {
       hours: 80,
       loggedHours: 0,
       completted: 0,
-      active: true
+      active: true,
+      tasks: [
+        {
+          id: 3,
+          title: "This is my first Task",
+          asignedTo: "Robert",
+          status: "TODO",
+          flag: "No Flag",
+          logHours: "Log Hours",
+          creationDate: new Date().getTime(),
+          estimatedTime: 10,
+          loggedHours: 6,
+          completed: 60,
+          description: "The purpose of this task is to create a detailed design of the Scrum Sprints. The Sprints will monitor some tasks that will be present on the development of our app.  All current tasks will be visible in its task panel. Each sprint list should have a unique user owner."
+        },
+        {
+          id: 4,
+          title: "This is my secound Task",
+          asignedTo: "Ismail",
+          status: "DOING",
+          flag: "No Flag",
+          logHours: "Log Hours",
+          creationDate: new Date().getTime(),
+          estimatedTime: 8,
+          loggedHours: 4,
+          completed: 20,
+          description: "The purpose of this task is to create a detailed design of the Scrum Sprints. The Sprints will monitor some tasks that will be present on the development of our app.  All current tasks will be visible in its task panel. Each sprint list should have a unique user owner."
+        },
+      ]
     },
     {
       id: 3,
