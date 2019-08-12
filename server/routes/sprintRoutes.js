@@ -26,9 +26,4 @@ module.exports = app => {
     const list = fakeData.sprints; 
     res.send(list);
   });
-
-  app.get("/api/sprint/data", requireLogin, (req, res) => {
-    const data = fakeData; 
-    res.send(data);
-  });
 };
