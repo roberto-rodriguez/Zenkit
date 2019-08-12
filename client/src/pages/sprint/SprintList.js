@@ -9,14 +9,6 @@ import { NavLink } from "react-router-dom";
 
 class SprintList extends Component {
 
-    constructor(){
-      super()
-      this.state = {
-        modal : false
-      }
-      this.ModalInsert = this.ModalInsert.bind(this);
-    }
-
 
   componentDidMount() {
     var { list, listSprints } = this.props;
@@ -26,11 +18,6 @@ class SprintList extends Component {
     }
   }
 
-  ModalInsert (){
-    this.setState({
-      modal : true
-    });
-  }
 
   render() {
     var sprintList = this.props.sprintList || [];
@@ -50,7 +37,7 @@ class SprintList extends Component {
           }}
         >
           <div className="right">
-            <button className=" waves-effect waves-light btn modal-trigger " onClick={() => this.ModalInsert ()}>Add Sprint</button>
+            <button className=" waves-effect waves-light btn modal-trigger ">Add Sprint</button>
           </div>
           <br />
           <br />
