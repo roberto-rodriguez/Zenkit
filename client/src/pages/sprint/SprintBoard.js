@@ -3,11 +3,12 @@ import "./SprintBoard.scss";
 import Page from "../common/cmp/Page";
 import * as sprintActions from "./sprint.actions";
 import { connect } from "react-redux";
+import { SprintBoardHeader, TaskColumn } from "./cmp/";
+import { taskStatusNames } from "../../util/constants";
 
 class SprintBoard extends Component {
-  
   componentDidMount() {
-    var { sprint, sprintId, openSprint } = this.props;
+    let { sprint, sprintId, openSprint } = this.props;
 
     if (!sprint) {
       openSprint(sprintId);
@@ -15,55 +16,36 @@ class SprintBoard extends Component {
   }
 
   render() {
-    var sprint = this.props.sprint || {};
-    var { name } = sprint;
-
     return (
       <Page fullWidth>
         <div
-          className="section"
-          style={{ height: 250, width: "100%", backgroundColor: "grey" }}
+          className="section sprint-board header grey lighten-4"
+          style={{ height: 250, width: "100%" }}
         >
-          {name}
+          <SprintBoardHeader sprint={this.props.sprint} />
         </div>
-        <br />
         <div
-          className="section row"
+          className="section row sprint-board kanban"
           style={{
             minHeight: 500,
             width: "100%"
           }}
         >
-          <div
-            className="col s3"
-            style={{ backgroundColor: "green", minHeight: 500 }}
-          />
-          <div
-            className="col s3"
-            style={{ backgroundColor: "brown", minHeight: 500 }}
-          />
-          <div
-            className="col s3"
-            style={{ backgroundColor: "grey", minHeight: 500 }}
-          />
-          <div
-            className="col s3"
-            style={{ backgroundColor: "blue", minHeight: 500 }}
-          />
+          {Object.keys(taskStatusNames).map(taskStatusId => (
+            <TaskColumn taskStatusId={taskStatusId} key={taskStatusId} />
+          ))}
         </div>
-
-        <br />
       </Page>
     );
   }
 }
 
 function mapStateToProps({ sprint }, props) {
-  var sprintId =
+  let sprintId =
     props.match && props.match.params && props.match.params.sprintId;
   const { open } = sprint;
 
-  var sprintData;
+  let sprintData;
 
   if (sprintId) {
     //If trying to open an Sprint by the id on the url '/sprint/:sprintId'

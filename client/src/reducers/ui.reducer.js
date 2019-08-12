@@ -1,5 +1,5 @@
 const initialState = {
-  provinces: null 
+  provinces: null
 };
 
 export default function authReducer(state = initialState, action) {

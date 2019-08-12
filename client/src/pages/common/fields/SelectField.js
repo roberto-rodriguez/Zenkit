@@ -42,8 +42,7 @@ class SelectField extends Component {
         <Combobox
           {...input}
           data={data}
-          onChange={e => {
-            debugger;
+          onChange={e => { 
             input.onChange(typeof e === "string" ? e : e[valueField]);
           }}
           valueField={valueField}

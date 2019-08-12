@@ -3,6 +3,7 @@ import "./NavBar.scss";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import * as authActions from "../../auth/auth.actions";
+import { primaryColor } from "../../../util/constants";
 
 class NavBar extends Component {
   render() {
@@ -13,7 +14,7 @@ class NavBar extends Component {
         style={{
           position: "absolute",
           zIndex: 1000,
-          backgroundColor: transparent ? "transparent" : "#0e0843"
+          backgroundColor: transparent ? "transparent" : primaryColor
         }}
       >
         <div className="nav-wrapper">
