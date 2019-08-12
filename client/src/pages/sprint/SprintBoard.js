@@ -1,15 +1,14 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "./SprintBoard.scss";
 import Page from "../common/cmp/Page";
 import * as sprintActions from "./sprint.actions";
-import {connect} from "react-redux";
-import TaskColumn from "./taskColumn";
-import moment from "moment";
+import { connect } from "react-redux";
+import { SprintBoardHeader, TaskColumn } from "./cmp/";
+import { taskStatusNames } from "../../util/constants";
 
 class SprintBoard extends Component {
-
   componentDidMount() {
-    let {sprint, sprintId, openSprint} = this.props;
+    let { sprint, sprintId, openSprint } = this.props;
 
     if (!sprint) {
       openSprint(sprintId);
@@ -17,37 +16,13 @@ class SprintBoard extends Component {
   }
 
   render() {
-    let sprint = this.props.sprint || {};
-    let {name, active, startDate, endDate, hours, loggedHours, completed, tasks} = sprint;
-    let start = moment(startDate).format("MMM Do");
-    let end = moment(endDate).format("MMM Do");
-
     return (
       <Page fullWidth>
         <div
           className="section sprint-board header grey lighten-4"
-          style={{height: 250, width: "100%"}}
+          style={{ height: 250, width: "100%" }}
         >
-          <div className="card">
-            <div className="card-content">
-              <div>
-                <strong>Name:</strong> {name}
-              </div>
-              <div>
-                <span className="sprint-detail"><strong>Status:</strong> {active ? "active" : "not active"}</span>
-                <span className="sprint-detail"><strong>Start Date:</strong> {start}</span>
-                <span className="sprint-detail"><strong>End Date:</strong> {end}</span>
-              </div>
-              <div>
-                <span className="sprint-detail"><strong>Estimated Hours:</strong> {hours}</span>
-                <span className="sprint-detail"><strong>Logged Hours:</strong> {loggedHours}</span>
-                <span className="sprint-detail">{completed}% Completed</span>
-              </div>
-            </div>
-            <div className="card-action">
-              <a href="#">Add Task</a>
-            </div>
-          </div>
+          <SprintBoardHeader sprint={this.props.sprint} />
         </div>
         <div
           className="section row sprint-board kanban"
@@ -56,52 +31,35 @@ class SprintBoard extends Component {
             width: "100%"
           }}
         >
-          <div
-            className="col s3"
-          >
-            <TaskColumn title="TO DO" tasks={tasks} status="TODO" className="green darken-4"/>
-          </div>
-          <div
-            className="col s3"
-          >
-            <TaskColumn title="DOING" tasks={tasks} status="DOING" className="red darken-2"/>
-          </div>
-          <div
-            className="col s3"
-          >
-            <TaskColumn title="REVIEW" tasks={tasks} status="REVIEW" className="grey darken-2"/>
-          </div>
-          <div
-            className="col s3"
-          >
-            <TaskColumn title="DONE" tasks={tasks} status="DONE" className="blue darken-4"/>
-          </div>
+          {Object.keys(taskStatusNames).map(taskStatusId => (
+            <TaskColumn taskStatusId={taskStatusId} key={taskStatusId} />
+          ))}
         </div>
       </Page>
     );
   }
 }
 
-function mapStateToProps({sprint}, props) {
+function mapStateToProps({ sprint }, props) {
   let sprintId =
     props.match && props.match.params && props.match.params.sprintId;
-  const {open} = sprint;
+  const { open } = sprint;
 
   let sprintData;
 
   if (sprintId) {
     //If trying to open an Sprint by the id on the url '/sprint/:sprintId'
     if (open && open.id == sprintId) {
-      sprintData = {...open};
+      sprintData = { ...open };
     }
   } else {
     // Id trying to open the active sprint by the url '/'
     if (open && open.active) {
-      sprintData = {...open};
+      sprintData = { ...open };
     }
   }
 
-  return {sprint: sprintData, sprintId};
+  return { sprint: sprintData, sprintId };
 }
 
 export default connect(

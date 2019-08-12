@@ -12,31 +12,33 @@ module.exports = {
       active: false,
       tasks: [
         {
-          id: 0,
+          id: 1,
+          name: "T-1",
           title: "This is my first Task",
-          asignedTo: "Robert",
-          status: "TODO",
+          assignee: "Robert",
+          status: 1,
           flag: "No Flag",
-          logHours: "Log Hours",
           creationDate: new Date().getTime(),
           estimatedTime: 10,
           loggedHours: 6,
           completed: 60,
-          description: "The purpose of this task is to create a detailed design of the Scrum Sprints. The Sprints will monitor some tasks that will be present on the development of our app.  All current tasks will be visible in its task panel. Each sprint list should have a unique user owner."
+          description:
+            "The purpose of this task is to create a detailed design of the Scrum Sprints. The Sprints will monitor some tasks that will be present on the development of our app.  All current tasks will be visible in its task panel. Each sprint list should have a unique user owner."
         },
         {
-          id: 0,
+          id: 2,
+          name: "T-2",
           title: "This is my secound Task",
-          asignedTo: "Ismail",
-          status: "TODO",
+          assignee: "Ismail",
+          status: 2,
           flag: "No Flag",
-          logHours: "Log Hours",
           creationDate: new Date().getTime(),
           estimatedTime: 8,
           loggedHours: 4,
           completed: 20,
-          description: "The purpose of this task is to create a detailed design of the Scrum Sprints. The Sprints will monitor some tasks that will be present on the development of our app.  All current tasks will be visible in its task panel. Each sprint list should have a unique user owner."
-        },
+          description:
+            "The purpose of this task is to create a detailed design of the Scrum Sprints. The Sprints will monitor some tasks that will be present on the development of our app.  All current tasks will be visible in its task panel. Each sprint list should have a unique user owner."
+        }
       ]
     },
     {
@@ -51,30 +53,74 @@ module.exports = {
       tasks: [
         {
           id: 3,
+          name: "T-3",
           title: "This is my first Task",
-          asignedTo: "Robert",
-          status: "TODO",
-          flag: "No Flag",
-          logHours: "Log Hours",
+          assignee: "Robert",
+          status: 3,
+          flag: 1,
           creationDate: new Date().getTime(),
           estimatedTime: 10,
           loggedHours: 6,
           completed: 60,
-          description: "The purpose of this task is to create a detailed design of the Scrum Sprints. The Sprints will monitor some tasks that will be present on the development of our app.  All current tasks will be visible in its task panel. Each sprint list should have a unique user owner."
+          description:
+            "The purpose of this task is to create a detailed design of the Scrum Sprints. The Sprints will monitor some tasks that will be present on the development of our app.  All current tasks will be visible in its task panel. Each sprint list should have a unique user owner."
         },
         {
           id: 4,
+          name: "T-4",
           title: "This is my secound Task",
-          asignedTo: "Ismail",
-          status: "DOING",
-          flag: "No Flag",
-          logHours: "Log Hours",
+          assignee: "Ismail",
+          status: 4,
+          flag: 2,
           creationDate: new Date().getTime(),
           estimatedTime: 8,
           loggedHours: 4,
           completed: 20,
-          description: "The purpose of this task is to create a detailed design of the Scrum Sprints. The Sprints will monitor some tasks that will be present on the development of our app.  All current tasks will be visible in its task panel. Each sprint list should have a unique user owner."
+          description:
+            "The purpose of this task is to create a detailed design of the Scrum Sprints. The Sprints will monitor some tasks that will be present on the development of our app.  All current tasks will be visible in its task panel. Each sprint list should have a unique user owner."
         },
+        {
+          id: 5,
+          name: "T-5",
+          title: "This is my first Task",
+          assignee: "Javier",
+          status: 3,
+          flag: 3,
+          creationDate: new Date().getTime(),
+          estimatedTime: 10,
+          loggedHours: 6,
+          completed: 60,
+          description:
+            "The purpose of this task is to create a detailed design of the Scrum Sprints. The Sprints will monitor some tasks that will be present on the development of our app.  All current tasks will be visible in its task panel. Each sprint list should have a unique user owner."
+        },
+        {
+          id: 6,
+          name: "T-6",
+          title: "This is my secound Task",
+          assignee: "Eduardo",
+          status: 1,
+          flag: 4,
+          creationDate: new Date().getTime(),
+          estimatedTime: 8,
+          loggedHours: 4,
+          completed: 20,
+          description:
+            "The purpose of this task is to create a detailed design of the Scrum Sprints. The Sprints will monitor some tasks that will be present on the development of our app.  All current tasks will be visible in its task panel. Each sprint list should have a unique user owner."
+        },
+        {
+          id: 7,
+          name: "T-7",
+          title: "This is my secound Task",
+          assignee: "Annier",
+          status: 2,
+          flag: null,
+          creationDate: new Date().getTime(),
+          estimatedTime: 8,
+          loggedHours: 4,
+          completed: 20,
+          description:
+            "The purpose of this task is to create a detailed design of the Scrum Sprints. The Sprints will monitor some tasks that will be present on the development of our app.  All current tasks will be visible in its task panel. Each sprint list should have a unique user owner."
+        }
       ]
     },
     {

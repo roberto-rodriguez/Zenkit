@@ -10,6 +10,18 @@
   flex-direction: column;
 }
 
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .content {
   width: 80%;
   margin: 0 auto;
@@ -46,3 +58,5 @@ h4 {
   font-size: 11px;
   margin-bottom: 5px;
 }
+
+ 
