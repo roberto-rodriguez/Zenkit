@@ -5,8 +5,8 @@ const initialState = {
 };
 
 export default function authReducer(state = initialState, action) {
-  var { type, data } = action;
-
+  const { type, data } = action;
+  console.log(data);
   switch (type) {
     case "START_APP":
       return {
@@ -21,7 +21,10 @@ export default function authReducer(state = initialState, action) {
         appStarted: true
       };
     case "LOG_OUT":
-      return { ...initialState, appStarted: true };
+      return {
+        ...initialState,
+        appStarted: true
+      };
     default:
       return state;
   }
