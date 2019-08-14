@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { Component } from "react";
 import TaskCard from "./TaskCard";
 import { connect } from "react-redux";
