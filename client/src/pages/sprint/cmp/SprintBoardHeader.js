@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
 
 import * as sprintActions from "../sprint.actions";
@@ -7,6 +8,7 @@ import moment from "moment";
 class SprintBoardHeader extends Component {
   render() {
     let sprint = this.props.sprint || {};
+    let addbut = this.props.addbut;
     let {
       name,
       active,
@@ -20,7 +22,7 @@ class SprintBoardHeader extends Component {
     let end = moment(endDate).format("MMM Do");
 
     return (
-      <div className="card">
+       <div className="card">
         <div className="card-content">
           <div>
             <strong>Name:</strong> {name}
@@ -46,10 +48,10 @@ class SprintBoardHeader extends Component {
             <span className="sprint-detail">{completed}% Completed</span>
           </div>
         </div>
-        <div className="card-action">
+        { addbut == 1 ?  "" : <div className="card-action">
           <a href="#">Add Task</a>
-        </div>
-      </div>
+        </div>  }
+       </div>
     );
   }
 }

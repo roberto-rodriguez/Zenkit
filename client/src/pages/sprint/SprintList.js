@@ -1,9 +1,13 @@
+/* eslint-disable no-this-before-super */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
 import "./SprintBoard.scss";
 import Page from "../common/cmp/Page";
 import * as sprintActions from "./sprint.actions";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
+import SprintBoardHeader from "./cmp/SprintBoardHeader";
+import { Button, Icon, Modal } from "react-materialize";
+import AddAction from "./AddAction";
 
 class SprintList extends Component {
   componentDidMount() {
@@ -15,32 +19,45 @@ class SprintList extends Component {
   }
 
   render() {
-    var sprintList = this.props.sprintList || [];
-
+    let add = 1;
+    let sprintList = this.props.sprintList || [];
     return (
       <Page>
         <div
-          className="section"
-          style={{ height: 250, width: "100%", backgroundColor: "grey" }}
-        />
-        <br />
-        <div
-          className="section"
+          className="section sprint-board header grey lighten-4"
           style={{
             minHeight: 500,
             width: "100%"
           }}
         >
+          <div className="right">
+            <Button
+              waves="light"
+              href="#modal1"
+              className="lighten-4 modal-trigger"
+            >
+              Add Sprint <Icon className="center">add</Icon>
+            </Button>
+
+            <Modal header="Add Sprint" id="modal1" actions>
+
+              <AddAction />
+              <div className="modal-footer">
+              <Button className="modal-close" waves="light">
+                  INSERT<Icon>child_care</Icon>
+                </Button>{' '}
+                <Button className="modal-close" waves="light">
+                  Close<Icon>directions_bike</Icon>
+                </Button>
+              </div>
+            </Modal>
+          </div>
+          <br />
+          <br />
           {sprintList.map((s, i) => (
-            <div key={i}>
-              <NavLink to={"/sprint/" + s.id}>{s.name}</NavLink>
-              <br />
-              <br />
-            </div>
+            <SprintBoardHeader sprint={s} addbut={add} />
           ))}
         </div>
-
-        <br />
       </Page>
     );
   }

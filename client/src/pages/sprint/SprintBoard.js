@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { Component } from "react";
 import "./SprintBoard.scss";
 import Page from "../common/cmp/Page";
