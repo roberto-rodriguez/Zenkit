@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import reduxThunk from "redux-thunk";
 import reducers from "./reducers";
 import { avatarColors } from "./util/constants";
-
+ 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(

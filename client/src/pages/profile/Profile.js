@@ -5,7 +5,6 @@ import { TextField, SelectField } from "../common/fields/";
 import { reduxForm, Field } from "redux-form";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
-import formFields from "./formFields";
 import * as profileActions from "./profile.actions";
 
 let contract = [
@@ -24,7 +23,6 @@ class Profile extends Component {
 
     alert(JSON.stringify(values));
   };
-
   render() {
     return (
       <Page>
@@ -60,6 +58,13 @@ class Profile extends Component {
                 component={SelectField}
                 source={contract}
               />
+            </div>
+            <div className="col l3">
+              {/**  <DateTimeField
+                name={"bornDate"}
+                label={"Born Date"}
+                component={DateTimeField}
+              /> */}
             </div>
           </div>
           <br />

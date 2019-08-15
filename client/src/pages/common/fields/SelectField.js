@@ -5,8 +5,8 @@ import * as uiActions from "../../../actions/ui.actions";
 
 {
   /*
-  Source can be either an array with the data,
-   or the name of the resource in the server
+  Source puede ser un array con la data,
+  o el nombre de un recurso en el server.
 
   <Field
 name={"province"}
