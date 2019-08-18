@@ -33,8 +33,11 @@ class TaskCard extends Component {
       <div className="task-card card" ref={provided.innerRef}
       {...provided.draggableProps}
       {...provided.dragHandleProps}>
-        onClick={() => {this.click(name)}}
-        style={{ cursor: "pointer", borderTopRightRadius: 20 }}
+      onClick={() => {
+          this.click(name);
+      }}
+      style={{ cursor: "pointer", borderTopRightRadius: 20 }}
+
         <div className="card-content">
           <div className="row">
             {flag && (

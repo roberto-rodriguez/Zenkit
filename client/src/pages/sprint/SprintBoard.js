@@ -7,6 +7,7 @@ import { SprintBoardHeader, TaskColumn } from "./cmp/";
 import { taskStatusNames } from "../../util/constants";
 import { DragDropContext } from 'react-beautiful-dnd';
 import "./SprintBoard.scss";
+import { DragDropContext } from 'react-beautiful-dnd';
 
 class SprintBoard extends Component {
   constructor(props) {
@@ -75,7 +76,7 @@ class SprintBoard extends Component {
               />
             ))}
           </div>
-        </DragDropContext>
+          </DragDropContext>
         </div>
         
 

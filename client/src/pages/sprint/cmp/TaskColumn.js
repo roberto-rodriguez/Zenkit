@@ -19,20 +19,22 @@ class TaskColumn extends Component {
         <Droppable droppableId={taskStatusId} >
           {provided => {
             return (
-              <div className={"card task-column blue lighten-5"} {...provided.droppableProps} ref={provided.innerRef}>
-                <div className="card-content">
-                  <span className="card-title">{taskStatusNames[taskStatusId]}</span>
-                  {columnTasks.map((task) => (
-                     <TaskCard key={task.id} task={task} next = {next} previous = {previous} />
-                  ))}
-                  {provided.placeholder}
-                </div>
-              </div>
-              );
-            }}
-        </Droppable>
-               
-             
+        <div className={"card task-column blue lighten-5"} {...provided.droppableProps} ref={provided.innerRef}>
+          <div className="card-content">
+            <span className="card-title">{taskStatusNames[taskStatusId]}</span>
+            {columnTasks.map((task) => (
+              <TaskCard key={task.id}
+                        task={task}
+                        next = {next}
+                        previous = {previous}                        
+              />
+            ))}
+            {provided.placeholder}
+          </div>
+        </div>
+          );
+        }}
+    </Droppable>
       </div>
     )
   }
