@@ -17,7 +17,14 @@ export default function sprintReducer(state = initialState, action) {
         ...state,
         list: { ...data }
       };
-    default:
+    case 'UPDATE_TASK_STATUS':
+      //TODO: Only for testing purpose
+      state.open.tasks[data.task_id].status = data.task_status;  
+      return { 
+        ...state, 
+        open: { ...state.open } 
+      };
+      default:
       return state;
   }
 }

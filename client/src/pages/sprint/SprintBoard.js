@@ -5,6 +5,7 @@ import * as sprintActions from "./sprint.actions";
 import { connect } from "react-redux";
 import { SprintBoardHeader, TaskColumn } from "./cmp/";
 import { taskStatusNames } from "../../util/constants";
+import { DragDropContext } from 'react-beautiful-dnd';
 
 class SprintBoard extends Component {
   componentDidMount() {
@@ -24,17 +25,19 @@ class SprintBoard extends Component {
         >
           <SprintBoardHeader sprint={this.props.sprint} />
         </div>
-        <div
-          className="section row sprint-board kanban"
-          style={{
-            minHeight: 500,
-            width: "100%"
-          }}
-        >
-          {Object.keys(taskStatusNames).map(taskStatusId => (
-            <TaskColumn taskStatusId={taskStatusId} key={taskStatusId} />
-          ))}
-        </div>
+        <DragDropContext onDragEnd={this.props.onDragEnd}>
+          <div
+            className="section row sprint-board kanban"
+            style={{
+              minHeight: 500,
+              width: "100%"
+            }}
+          >
+            {Object.keys(taskStatusNames).map(taskStatusId => (
+              <TaskColumn taskStatusId={taskStatusId} key={taskStatusId} />
+            ))}
+          </div>
+        </DragDropContext>
       </Page>
     );
   }
