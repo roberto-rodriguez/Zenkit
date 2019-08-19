@@ -17,8 +17,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Route exact path="/" component={SprintBoard} />
-        <Route exact path="/task" component={Task} />
-        <Route exact path="/task/:taskId" component={Task} />
+        <Route exact path="/task/:taskName" component={Task} />
         <Route exact path="/sprint/:sprintId" component={SprintBoard} />
         <Route exact path="/sprints" component={SprintList} />
         <Route exact path="/login" component={Login} />

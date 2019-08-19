@@ -3,6 +3,10 @@ import { flags } from "../../../util/constants";
 import Avatar from "react-avatar";
 
 class TaskCard extends Component {
+  click = name => {
+    this.props.history.push("/task/" + name);    
+  };
+
   render() {
     let {
       id,
@@ -15,17 +19,22 @@ class TaskCard extends Component {
     } = this.props.task;
 
     return (
-      <div className="task-card card">
+      <div
+        className="task-card card"
+        onClick={() => {this.click(name)}}
+        style={{ cursor: "pointer" }}
+      >
         <div className="card-content">
           <div className="row">
             {flag && (
+              // eslint-disable-next-line jsx-a11y/anchor-is-valid
               <a
                 className={
                   "left user-button btn-floating waves-light " +
                   flags[flag].color
                 }
               >
-                <i class="material-icons" style={{ fontSize: 40 }}>
+                <i className="material-icons" style={{ fontSize: 40 }}>
                   {flags[flag].icon}
                 </i>
               </a>
@@ -55,10 +64,10 @@ class TaskCard extends Component {
               {loggedHours}/{estimatedHours}
             </span>
             <div className={"right"}>
-              <i class="material-icons grey-text darken-1 cursor-pointer">
+              <i className="material-icons grey-text darken-1 cursor-pointer">
                 navigate_before
               </i>
-              <i class="material-icons grey-text darken-1 cursor-pointer">
+              <i className="material-icons grey-text darken-1 cursor-pointer">
                 navigate_next
               </i>
             </div>
