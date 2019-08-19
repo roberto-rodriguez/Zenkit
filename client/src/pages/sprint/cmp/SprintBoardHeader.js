@@ -5,11 +5,11 @@ import { reduxForm, Field } from "redux-form";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import moment from "moment";
-import { Button, Modal } from "react-materialize";
+import { Button, Dialog } from "evergreen-ui";
 
 class SprintBoardHeader extends Component {
   render() {
-    
+
     let sprint = this.props.sprint || {};
     let {
       name,
@@ -74,7 +74,7 @@ const AddTaskForm = props => {
 
   return (
     <form className="card">
-      <Modal
+      <Dialog
         className="card-action"
         header="Add New Task"
         fixedFooter
@@ -91,7 +91,7 @@ const AddTaskForm = props => {
         <form
           onSubmit={handleSubmit(() => {
             addTask(history, values);
-           
+
             alert(JSON.stringify(values));
           })}
         >
@@ -173,7 +173,7 @@ const AddTaskForm = props => {
             </div>
           </form>
         </form>
-      </Modal>
+      </Dialog>
     </form>
   );
 };
