@@ -5,7 +5,8 @@ import { taskStatusNames } from "../../../util/constants";
 
 class TaskColumn extends Component {
   render() {
-    let { taskStatusId, columnTasks } = this.props;
+    let { taskStatusId, columnTasks, history } = this.props;
+    
 
     return (
       <div className="col s3 transparent">
@@ -13,7 +14,11 @@ class TaskColumn extends Component {
           <div className="card-content">
             <span className="card-title">{taskStatusNames[taskStatusId]}</span>
             {columnTasks.map((task, i) => (
-              <TaskCard key={i} task={task} />
+              <TaskCard
+                key={i}
+                history={history}
+                task={task}
+              />
             ))}
           </div>
         </div>
