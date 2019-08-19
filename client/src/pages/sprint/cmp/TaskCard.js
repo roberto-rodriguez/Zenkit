@@ -31,7 +31,7 @@ class TaskCard extends Component {
                   flags[flag].color
                 }
               >
-                <i class="material-icons" style={{ fontSize: 40 }}>
+                <i className="material-icons" style={{ fontSize: 40 }}>
                   {flags[flag].icon}
                 </i>
               </a>
@@ -61,10 +61,10 @@ class TaskCard extends Component {
               {loggedHours}/{estimatedHours}
             </span>
             <div className={"right"}>
-              <i class="material-icons grey-text darken-1 cursor-pointer">
+              <i className="material-icons grey-text darken-1 cursor-pointer">
                 navigate_before
               </i>
-              <i class="material-icons grey-text darken-1 cursor-pointer">
+              <i className="material-icons grey-text darken-1 cursor-pointer">
                 navigate_next
               </i>
             </div>
