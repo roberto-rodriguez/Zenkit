@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import DateTimePicker from "react-widgets/lib/DateTimePicker";
 
 class CalendarField extends Component {
   render() {
@@ -14,12 +13,7 @@ class CalendarField extends Component {
     return (
       <div>
         <label>{label}</label>
-        <DateTimePicker
-          {...input}
-          data={data}
-          onBlur={() => input.onBlur()}
-          time={includeTime || false}
-        />
+
         <div className="error-text">{touched && error}</div>
       </div>
     );
