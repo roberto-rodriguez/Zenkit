@@ -16,9 +16,14 @@ class Page extends Component {
     }
 
     return (
-      <div className="grey lighten-5">
+      <div className="page grey lighten-5">
         <NavBar />
-        <div className={fullWidth ? "" : "content"}>{this.props.children}</div>
+        <div
+          className={"page-body " + (fullWidth ? "" : "content")}
+          style={{ paddingTop: 66 }}
+        >
+          {this.props.children}
+        </div>
       </div>
     );
   }

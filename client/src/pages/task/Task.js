@@ -58,8 +58,7 @@ class Task extends Component {
           className="section"
           style={{
             height: 250,
-            width: "100%",
-            paddingTop: 60
+            width: "100%" 
           }}
         >
           <div>

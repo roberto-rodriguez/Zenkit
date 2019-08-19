@@ -1,22 +1,9 @@
-import React, { Component } from "react";
-import Combobox from "react-widgets/lib/Combobox";
+import React from "react";
 import { connect } from "react-redux";
+import * as Evergreen from "evergreen-ui";
 import * as uiActions from "../../../actions/ui.actions";
 
-{
-  /*
-  Source puede ser un array con la data,
-  o el nombre de un recurso en el server.
-
-  <Field
-name={"province"}
-label={"Province"}
-component={SelectField}
-source={"provinces"}
-/> */
-}
-
-class SelectField extends Component {
+class SelectField extends React.Component {
   componentDidMount() {
     var { source, data, fetchUIProp } = this.props;
 
@@ -26,35 +13,39 @@ class SelectField extends Component {
   }
 
   render() {
-    const { input, label } = this.props;
-
-    var data = this.props.data || {};
-    var meta = this.props.meta || {};
-    var config = this.props.config || {};
-    var { error, touched } = meta;
-    var { defaultValue } = config;
-    var valueField = config.valueField || "id";
-    var textField = config.textField || "name";
+    var {
+      input,
+      meta,
+      hint,
+      width,
+      data,
+      valueField,
+      textField,
+      defaultValue
+    } = this.props;
+    meta = meta || {};
+    const { error, touched } = meta;
 
     return (
-      <div>
-        <label>{label}</label>
-        <Combobox
-          {...input}
-          data={data}
-          onChange={e => { 
-            input.onChange(typeof e === "string" ? e : e[valueField]);
-          }}
-          valueField={valueField}
-          textField={textField}
-          onBlur={() => input.onBlur()}
-          busy={false}
-        />
-        <div className="error-text">{touched && error}</div>
-      </div>
+      <Evergreen.SelectField
+        {...input}
+        {...this.props}
+        width={width || 320}
+        value={defaultValue}
+        hint={!(touched && error) && hint}
+        validationMessage={touched && error}
+      >
+        <option />
+        {(data || []).map((item, i) => (
+          <option value={item[valueField || "id"]}>
+            {item[textField || "name"]}
+          </option>
+        ))}
+      </Evergreen.SelectField>
     );
   }
 }
+
 const mapStateToProps = ({ ui }, ownProps) => {
   var { source } = ownProps;
 
