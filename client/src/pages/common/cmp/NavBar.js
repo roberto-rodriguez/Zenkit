@@ -26,9 +26,14 @@ class NavBar extends Component {
             className="right hide-on-med-and-down"
             style={{ marginRight: "10%" }}
           >
+            <li className="toggle-menu-wrapper">
+              <NavLink to="/docs">
+                <h5 style={{ marginRight: 30 }}>Docs</h5>
+              </NavLink>
+            </li>
             {appStarted && userId && (
               <li className="toggle-menu-wrapper">
-                <h5>Menu</h5>
+                <h5 style={{ marginRight: 30 }}>Menu</h5>
                 <ul style={{ width: 200 }}>
                   <li>
                     <NavLink to="/task">Task</NavLink>
