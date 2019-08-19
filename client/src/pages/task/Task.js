@@ -16,7 +16,7 @@ class Task extends Component {
       flag: "No Flag",
       logHours: "Log Hours",
       creationDate: new Date().getTime(),
-      estimatedTime: 10,
+      estimatedHours: 10,
       loggedHours: 6,
       completed: 60,
       description: "",
@@ -36,7 +36,7 @@ class Task extends Component {
         this.setState({
           asignedTo: res.data.user.name,
           creationDate: res.data.sprints[id].tasks[id].creationDate,
-          estimatedTime: res.data.sprints[id].tasks[id].estimatedTime,
+          estimatedHours: res.data.sprints[id].tasks[id].estimatedHours,
           loggedHours: res.data.sprints[id].tasks[id].loggedHours,
           completed: res.data.sprints[id].tasks[id].completed,
           description: res.data.sprints[id].tasks[id].description,
@@ -58,8 +58,7 @@ class Task extends Component {
           className="section"
           style={{
             height: 250,
-            width: "100%",
-            paddingTop: 60
+            width: "100%" 
           }}
         >
           <div>
@@ -149,7 +148,7 @@ class Task extends Component {
                     marginLeft: 10
                   }}
                 >
-                  Estimated Hours: {this.state.estimatedTime}
+                  Estimated Hours: {this.state.estimatedHours}
                 </h6>
               </div>
               <div class="col s2.4 left">

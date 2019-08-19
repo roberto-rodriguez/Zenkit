@@ -10,7 +10,7 @@ class TaskCard extends Component {
       title,
       assignee,
       flag,
-      estimatedTime,
+      estimatedHours,
       loggedHours
     } = this.props.task;
 
@@ -52,7 +52,7 @@ class TaskCard extends Component {
           </div>
           <div>
             <span className={"left  grey-text darken-1"}>
-              {loggedHours}/{estimatedTime}
+              {loggedHours}/{estimatedHours}
             </span>
             <div className={"right"}>
               <i className="material-icons grey-text darken-1 cursor-pointer">

@@ -17,9 +17,9 @@ module.exports = {
           title: "This is my first Task",
           assignee: "Robert",
           status: 1,
-          flag: "No Flag",
+          flag: 1,
           creationDate: new Date().getTime(),
-          estimatedTime: 10,
+          estimatedHours: 10,
           loggedHours: 6,
           completed: 60,
           description:
@@ -31,9 +31,9 @@ module.exports = {
           title: "This is my secound Task",
           assignee: "Ismail",
           status: 2,
-          flag: "No Flag",
+          flag: null,
           creationDate: new Date().getTime(),
-          estimatedTime: 8,
+          estimatedHours: 8,
           loggedHours: 4,
           completed: 20,
           description:
@@ -59,7 +59,7 @@ module.exports = {
           status: 3,
           flag: 1,
           creationDate: new Date().getTime(),
-          estimatedTime: 10,
+          estimatedHours: 10,
           loggedHours: 6,
           completed: 60,
           description:
@@ -73,7 +73,7 @@ module.exports = {
           status: 4,
           flag: 2,
           creationDate: new Date().getTime(),
-          estimatedTime: 8,
+          estimatedHours: 8,
           loggedHours: 4,
           completed: 20,
           description:
@@ -87,7 +87,7 @@ module.exports = {
           status: 3,
           flag: 3,
           creationDate: new Date().getTime(),
-          estimatedTime: 10,
+          estimatedHours: 10,
           loggedHours: 6,
           completed: 60,
           description:
@@ -101,7 +101,7 @@ module.exports = {
           status: 1,
           flag: 4,
           creationDate: new Date().getTime(),
-          estimatedTime: 8,
+          estimatedHours: 8,
           loggedHours: 4,
           completed: 20,
           description:
@@ -115,7 +115,7 @@ module.exports = {
           status: 2,
           flag: null,
           creationDate: new Date().getTime(),
-          estimatedTime: 8,
+          estimatedHours: 8,
           loggedHours: 4,
           completed: 20,
           description:
