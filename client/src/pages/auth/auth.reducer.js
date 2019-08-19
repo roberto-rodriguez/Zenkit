@@ -6,7 +6,6 @@ const initialState = {
 
 export default function authReducer(state = initialState, action) {
   const { type, data } = action;
-  console.log(data);
   switch (type) {
     case "START_APP":
       return {

@@ -8,7 +8,7 @@ import moment from "moment";
 class SprintBoardHeader extends Component {
   render() {
     let sprint = this.props.sprint || {};
-    let addbut = this.props.addbut;
+    let disable = this.props.disablebutton;
     let {
       name,
       active,
@@ -48,7 +48,7 @@ class SprintBoardHeader extends Component {
             <span className="sprint-detail">{completed}% Completed</span>
           </div>
         </div>
-        { addbut == 1 ?  "" : <div className="card-action">
+        { disable == 1 ?  "" : <div className="card-action">
           <a href="#">Add Task</a>
         </div>  }
        </div>

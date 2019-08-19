@@ -19,7 +19,7 @@ class SprintList extends Component {
   }
 
   render() {
-    let add = 1;
+    let button = 1;
     let sprintList = this.props.sprintList || [];
     return (
       <Page>
@@ -55,7 +55,7 @@ class SprintList extends Component {
           <br />
           <br />
           {sprintList.map((s, i) => (
-            <SprintBoardHeader sprint={s} addbut={add} />
+            <SprintBoardHeader sprint={s} disablebutton={button} />
           ))}
         </div>
       </Page>

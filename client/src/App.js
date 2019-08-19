@@ -1,6 +1,5 @@
 import React from "react";
 import "react-widgets/dist/css/react-widgets.css";
-import "materialize-css/dist/css/materialize.css"
 import { BrowserRouter, Route } from "react-router-dom";
 import { SprintList, Task, Login, SprintBoard, Profile } from "./pages/";
 import { connect } from "react-redux";
