@@ -6,8 +6,9 @@ import { Droppable } from 'react-beautiful-dnd';
 
 class TaskColumn extends Component {
   render() {
-    let { taskStatusId, columnTasks } = this.props;
+    let { taskStatusId, columnTasks, history } = this.props;
     
+
     return (
       <div className="col s3 transparent">
         <Droppable droppableId={taskStatusId} >
@@ -17,7 +18,7 @@ class TaskColumn extends Component {
                 <div className="card-content">
                   <span className="card-title">{taskStatusNames[taskStatusId]}</span>
                   {columnTasks.map((task, i) => (
-                    <TaskCard key={i} task={task} />
+                    <TaskCard key={i} task={task}  history={history} />
                   ))}
                   {provided.placeholder}
                 </div>
@@ -25,6 +26,7 @@ class TaskColumn extends Component {
               );
             }}
         </Droppable>
+               
       </div>
     )
   }

@@ -4,6 +4,10 @@ import Avatar from "react-avatar";
 import { Draggable } from 'react-beautiful-dnd';
 
 class TaskCard extends Component {
+  click = name => {
+    this.props.history.push("/task/" + name);    
+  };
+
   render() {
     let {
       id,
@@ -22,9 +26,12 @@ class TaskCard extends Component {
       <div className="task-card card" ref={provided.innerRef}
       {...provided.draggableProps}
       {...provided.dragHandleProps}>
+        onClick={() => {this.click(name)}}
+        style={{ cursor: "pointer" }}
         <div className="card-content">
           <div className="row">
             {flag && (
+              // eslint-disable-next-line jsx-a11y/anchor-is-valid
               <a
                 className={
                   "left user-button btn-floating waves-light " +

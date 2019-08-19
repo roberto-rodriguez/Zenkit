@@ -34,10 +34,7 @@ class NavBar extends Component {
             {appStarted && userId && (
               <li className="toggle-menu-wrapper">
                 <h5 style={{ marginRight: 30 }}>Menu</h5>
-                <ul style={{ width: 200 }}>
-                  <li>
-                    <NavLink to="/task">Task</NavLink>
-                  </li>
+                <ul style={{ width: 200 }}>                  
                   <li>
                     <NavLink to="/sprints">Sprints</NavLink>
                   </li>

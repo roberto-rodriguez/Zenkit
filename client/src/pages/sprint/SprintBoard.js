@@ -10,7 +10,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 class SprintBoard extends Component {
   componentDidMount() {
     let { sprint, sprintId, openSprint } = this.props;
-
+  
     if (!sprint) {
       openSprint(sprintId);
     }
@@ -34,10 +34,11 @@ class SprintBoard extends Component {
             }}
           >
             {Object.keys(taskStatusNames).map(taskStatusId => (
-              <TaskColumn taskStatusId={taskStatusId} key={taskStatusId} />
+              <TaskColumn taskStatusId={taskStatusId} key={taskStatusId} history={this.props.history} />
             ))}
           </div>
         </DragDropContext>
+            
       </Page>
     );
   }
