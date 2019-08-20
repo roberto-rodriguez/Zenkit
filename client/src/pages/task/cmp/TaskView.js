@@ -218,11 +218,9 @@ class TaskView extends Component {
 }
 
 function mapStateToProps({ task, sprint }, props) {
-    console.log('props: ', props);
   var taskName =
     props.match && props.match.params && props.match.params.taskName;
   const { open } = task;
-  console.log("taskName: ", taskName);
   let taskData;
 
   if (taskName) {

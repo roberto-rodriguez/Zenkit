@@ -4,8 +4,6 @@ import Page from "../common/cmp/Page";
 import TaskView from "./cmp/TaskView";
 import Comment from "./cmp/Comment";
 
-//import CreateTask from "./cmp/createTask";
-
 class Task extends Component {
   render() {
     return (

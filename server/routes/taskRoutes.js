@@ -1,44 +1,35 @@
 const requireLogin = require("../middlewares/requireLogin");
+const serverProxy = require("./serverProxy");
 const fakeData = require("../fakeData");
 
 module.exports = app => {
-  app.get("/api/task/load/:name", requireLogin, (req, res) => {
+  app.get("/api/task/load/:name", requireLogin, async (req, res) => {
     var taskName = req.params && req.params.name;
 
-    const sprintList = fakeData.sprints;
-    const taskList1 = sprintList[0].tasks;
-    const taskList2 = sprintList[1].tasks;
+    var query;
 
-    var filter;
-
-    if (taskName && taskName != 0) {
-      filter = s => s.name == taskName;
-    } else filter = s => s.name == taskName; //temporal hackfix
-
-    var task = taskList1.filter(filter)[0];
-
-    if (!task) {
-      // temporal hackfix
-      task = taskList2.filter(filter)[0];
+    if (taskName && taskName != null) {
+      query = "name@is@(S)" + taskName;
+    } else {
+      query = "id@is@(I)1";
     }
-    res.send(task);
+
+    const result = await serverProxy.get("/task/load?params=" + query);
+
+    res.send(result && result.data);
   });
 
-  app.get("/api/task/list", (req, res) => {
-    const sprintList = fakeData.sprints;
-    const taskList1 = sprintList[0].tasks;
-    const taskList2 = sprintList[1].tasks; //temporal
-    var taskList = [...taskList1, ...taskList2];
-    res.send(taskList);
+  app.get("/api/task/list", async (req, res) => {
+    const result = await serverProxy.get("/task/list");
+
+    res.send(result && result.data && result.data.List);
   });
 
-  app.post("/api/task/add", (req, res) => {
+  app.post("/api/task/add/", requireLogin, async (req, res) => {
     var taskData = req.params && req.params.values;
 
-    //temporal option
-    const sprintList = fakeData.sprints;
-    let taskList = sprintList[2].tasks; //temporal
+    const result = await serverProxy.post("/task/add?params=" + taskData);
 
-    res.send(taskList);
+    res.send(result && result.data);
   });
 };
