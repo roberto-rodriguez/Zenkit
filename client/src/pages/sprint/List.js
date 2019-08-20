@@ -5,7 +5,7 @@ import { Pane, Text, Button, Tooltip, Position } from 'evergreen-ui';
 
 class List extends Component{
 
-      renderRedirect = (prop) => {
+      renderRedirect (prop){
           return <Redirect  to={"/sprint/"+prop.id} />
       }
   render(){
