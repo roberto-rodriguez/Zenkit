@@ -23,4 +23,8 @@ module.exports = app => {
 
     res.send(result && result.data && result.data.List);
   });
+
+  app.put("/api/task/move", requireLogin, async (req, res) => {
+    res.send("ok");
+  });
 };

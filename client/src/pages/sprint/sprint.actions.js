@@ -19,6 +19,14 @@ export const listSprints = sprintId => async dispatch => {
   }
 };
 
+export const moveTask = (sprintId, taskId, status) => async dispatch => {
+  const res = await axios.put("/api/task/move", {task: taskId, status: status});
+
+  if (res.status === 200) {
+    dispatch(openSprint(sprintId));
+  }
+};
+
 export const onDragEnd = ({ source, destination }) => async dispatch => {
   //Fix: Call api to update task status maybe a PUT
   dispatch({ type: "UPDATE_TASK_STATUS", data: {'task_id' : source.index,'task_status': destination.droppableId} });

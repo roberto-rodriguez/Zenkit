@@ -9,6 +9,11 @@ class TaskColumn extends Component {
     let { taskStatusId, columnTasks, history } = this.props;
     
 
+    const statusIds = Object.keys(taskStatusNames);
+    const statusIndex = statusIds.findIndex(x => x === taskStatusId);
+    let next = statusIds[(statusIndex + 1)]?statusIds[(statusIndex + 1)]:null;
+    let previous = statusIds[(statusIndex - 1)]?statusIds[(statusIndex - 1)]:null;
+
     return (
       <div className="col s3 transparent">
         <Droppable droppableId={taskStatusId} >
@@ -17,8 +22,8 @@ class TaskColumn extends Component {
               <div className={"card task-column blue lighten-5"} {...provided.droppableProps} ref={provided.innerRef}>
                 <div className="card-content">
                   <span className="card-title">{taskStatusNames[taskStatusId]}</span>
-                  {columnTasks.map((task, i) => (
-                    <TaskCard key={i} task={task}  history={history} />
+                  {columnTasks.map((task) => (
+                     <TaskCard key={task.id} task={task} next = {next} previous = {previous} />
                   ))}
                   {provided.placeholder}
                 </div>
@@ -27,6 +32,7 @@ class TaskColumn extends Component {
             }}
         </Droppable>
                
+             
       </div>
     )
   }
