@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import { flags } from "../../../util/constants";
 import Avatar from "react-avatar";
+import {connect} from "react-redux";
+import * as sprintActions from "../sprint.actions";
 
 class TaskCard extends Component {
+  moveIt(destinationStatus){
+    let { task, sprintId, moveTask  } = this.props;
+    moveTask(sprintId, task.id, destinationStatus);
+  }
   render() {
     let {
       id,
@@ -55,12 +61,12 @@ class TaskCard extends Component {
               {loggedHours}/{estimatedHours}
             </span>
             <div className={"right"}>
-              <i className="material-icons grey-text darken-1 cursor-pointer">
+              {this.props.previous?<i className="material-icons grey-text darken-1 cursor-pointer" onClick={event => {this.moveIt(this.props.previous)}}>
                 navigate_before
-              </i>
-              <i className="material-icons grey-text darken-1 cursor-pointer">
+              </i>:null}
+              {this.props.next?<i className="material-icons grey-text darken-1 cursor-pointer" onClick={event => {this.moveIt(this.props.next)}}>
                 navigate_next
-              </i>
+              </i>:null}
             </div>
           </div>
         </div>
@@ -68,5 +74,10 @@ class TaskCard extends Component {
     );
   }
 }
+const mapStateToProps = ({ sprint }, myProps) => {
+  return {
+    sprintId: sprint.open?sprint.open.id:null
+  };
+};
 
-export default TaskCard;
+export default connect(mapStateToProps, sprintActions)(TaskCard);
