@@ -5,6 +5,10 @@ import {connect} from "react-redux";
 import * as sprintActions from "../sprint.actions";
 
 class TaskCard extends Component {
+  click = name => {
+    this.props.history.push("/task/" + name);
+  };
+
   moveIt(destinationStatus){
     let { task, sprintId, moveTask  } = this.props;
     moveTask(sprintId, task.id, destinationStatus);
@@ -21,10 +25,15 @@ class TaskCard extends Component {
     } = this.props.task;
 
     return (
-      <div className="task-card card">
+      <div
+        className="task-card card"
+        onClick={() => {this.click(name)}}
+        style={{ cursor: "pointer" }}
+      >
         <div className="card-content">
           <div className="row">
             {flag && (
+              // eslint-disable-next-line jsx-a11y/anchor-is-valid
               <a
                 className={
                   "left user-button btn-floating waves-light " +

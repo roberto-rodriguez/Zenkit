@@ -5,7 +5,8 @@ import { taskStatusNames } from "../../../util/constants";
 
 class TaskColumn extends Component {
   render() {
-    let { taskStatusId, columnTasks } = this.props;
+    let { taskStatusId, columnTasks, history } = this.props;
+
 
     const statusIds = Object.keys(taskStatusNames);
     const statusIndex = statusIds.findIndex(x => x === taskStatusId);
@@ -18,7 +19,12 @@ class TaskColumn extends Component {
           <div className="card-content">
             <span className="card-title">{taskStatusNames[taskStatusId]}</span>
             {columnTasks.map((task) => (
-              <TaskCard key={task.id} task={task} next = {next} previous = {previous} />
+              <TaskCard key={task.id}
+                        task={task}
+                        next = {next}
+                        previous = {previous}
+                        history={history}
+              />
             ))}
           </div>
         </div>

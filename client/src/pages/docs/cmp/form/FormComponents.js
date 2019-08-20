@@ -3,14 +3,15 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 import { Heading, Button } from "evergreen-ui";
-import { TextField, SelectField } from "../../../common/fields/";
+import { TextField, SelectField, TextAreaField } from "../../../common/fields/";
 import SideSheet from "../../../common/cmp/SideSheet";
 import formSideSheetData from "./formSideSheetData";
 
 const formFields = [
   { name: "firstName", label: "First Name" },
   { name: "contractType", label: "Contract Type" },
-  { name: "provinces", label: "Provinces" }
+  { name: "provinces", label: "Provinces" },
+  { name: "description", label: "Description" }
 ];
 
 let contractTypes = [
@@ -33,7 +34,7 @@ class FormComponents extends React.Component {
     var { props, state, setState } = this;
     const values = props.values || {};
     var fieldData = state.showField ? formSideSheetData[state.showField] : {};
-
+    debugger;
     return (
       <div>
         <b>FormComponents</b>
@@ -41,8 +42,8 @@ class FormComponents extends React.Component {
         <br />
         <br />
         <form onSubmit={this.props.handleSubmit(this.onSave)}>
-          <div class="row">
-            <div class="col">
+          <div className="row">
+            <div className="col">
               <Field
                 name={"firstName"}
                 label="First Name"
@@ -52,11 +53,11 @@ class FormComponents extends React.Component {
                 placeholder="Placeholder text here"
               />
             </div>
-            <div class="col">{this.buildDetailsButton("textField")}</div>
+            <div className="col">{this.buildDetailsButton("textField")}</div>
           </div>
 
-          <div class="row">
-            <div class="col">
+          <div className="row">
+            <div className="col">
               <Field
                 name={"contractType"}
                 label="Contract Type"
@@ -66,12 +67,12 @@ class FormComponents extends React.Component {
                 defaultValue={values["contractType"]}
               />
             </div>
-            <div class="col">
+            <div className="col">
               {this.buildDetailsButton("selectStaticStatic")}
             </div>
           </div>
-          <div class="row">
-            <div class="col">
+          <div className="row">
+            <div className="col">
               <Field
                 name={"provinces"}
                 label="Provinces"
@@ -81,8 +82,22 @@ class FormComponents extends React.Component {
                 defaultValue={values["province"]}
               />
             </div>
-            <div class="col">
+            <div className="col">
               {this.buildDetailsButton("selectStaticDynamic")}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <Field
+                name={"description"}
+                label="Description"
+                component={TextAreaField}
+                defaultValue={values["description"]}
+                placeholder="Placeholder text here"
+              />
+            </div>
+            <div className="col">
+              {this.buildDetailsButton("textAreaField")}
             </div>
           </div>
           <button
@@ -98,7 +113,28 @@ class FormComponents extends React.Component {
           isShown={!!state.showField}
           onCloseComplete={() => this.setState({ showField: null })}
         >
-          <Heading>{""}</Heading>
+          <div className="section">
+            <a
+              href={fieldData["url"]}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {fieldData["url"]}
+            </a>
+          </div>
+          <div className="section">
+            <h5>Props</h5> 
+            <ul>
+              {(fieldData["props"] || []).map((prop, i) => (
+                <li key={i}>
+                  <span>
+                    <b>{prop["name"] + ": "}</b>
+                    {prop["description"]}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </SideSheet>
       </div>
     );
@@ -117,9 +153,7 @@ class FormComponents extends React.Component {
 }
 
 function validate(values, props, b) {
-  debugger;
   const errors = {};
-
   formFields.forEach(({ name, label }) => {
     if (!values[name]) {
       errors[name] = label + " is required";
