@@ -36,7 +36,7 @@ class List extends Component{
           <Button
             children = "Edit"
             iconBefore = "edit"
-            onClick = { this.renderRedirect(prop) }
+            onClick = {()=> this.renderRedirect(prop) }
           />
         </Tooltip>
         {' '}
