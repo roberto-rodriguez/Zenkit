@@ -2,7 +2,7 @@ import axios from "axios";
 import * as objectUtil from "../../util/object.util";
 
 export const openTask = taskName => async dispatch => {
-  const res = await axios.get("/api/task/load/" + (taskName || 0));
+  const res = await axios.get("/api/task/load/" + (taskName || null));
 
   var task = res.data;
 
@@ -14,13 +14,13 @@ export const listTasks = () => async dispatch => {
 
   if (res.data) {
     var tasks = objectUtil.listToObject(res.data);
+
     dispatch({ type: "SET_TASK_LIST", data: tasks });
-    console.log('tasks: ', tasks);
   }
 };
 
 export const addTask = (history, formValues) => async dispatch => {
-  const res = await axios.post("/api/task/add/" + (formValues || ""));
+  const res = await axios.post("/api/task/add/" + (formValues || null));
 
   if (res.data) {
     dispatch({ type: "SET_ADD_TASK", data: res.data });
