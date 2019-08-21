@@ -18,3 +18,11 @@ export const listSprints = sprintId => async dispatch => {
     dispatch({ type: "SET_SPRINT_LIST", data: sprints });
   }
 };
+
+export const moveTask = (sprintId, taskId, status) => async dispatch => {
+  const res = await axios.put("/api/task/move", {task: taskId, status: status});
+
+  if (res.status === 200) {
+    dispatch(openSprint(sprintId));
+  }
+};
