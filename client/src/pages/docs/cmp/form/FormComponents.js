@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
-import { Heading, Button } from "evergreen-ui";
+import { Button } from "evergreen-ui";
 import { TextField, SelectField, TextAreaField } from "../../../common/fields/";
 import SideSheet from "../../../common/cmp/SideSheet";
 import formSideSheetData from "./formSideSheetData";
@@ -34,7 +34,7 @@ class FormComponents extends React.Component {
     var { props, state, setState } = this;
     const values = props.values || {};
     var fieldData = state.showField ? formSideSheetData[state.showField] : {};
-    debugger;
+
     return (
       <div>
         <b>FormComponents</b>
@@ -123,7 +123,7 @@ class FormComponents extends React.Component {
             </a>
           </div>
           <div className="section">
-            <h5>Props</h5> 
+            <h5>Props</h5>
             <ul>
               {(fieldData["props"] || []).map((prop, i) => (
                 <li key={i}>

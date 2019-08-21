@@ -1,12 +1,13 @@
 import React from "react";
 import { Pane, SidebarTab, Tablist, Paragraph } from "evergreen-ui";
 import Page from "../common/cmp/Page";
-import { CodingConventions, FormComponents } from "./cmp";
+import { CodingConventions, FormComponents, ApiDocs } from "./cmp";
 
 const tabs = {
   introduction: "Introduction",
   coding: "Coding Conventions",
-  form: "Form Components"
+  form: "Form Components",
+  api: "API Integration"
 };
 
 class Docs extends React.Component {
@@ -61,6 +62,8 @@ class Docs extends React.Component {
         return <CodingConventions />;
       case "form":
         return <FormComponents />;
+      case "api":
+        return <ApiDocs />;
       default:
         return (
           <Pane

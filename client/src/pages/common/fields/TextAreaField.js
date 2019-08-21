@@ -3,8 +3,7 @@ import { Textarea, Label, Pane } from "evergreen-ui";
 
 class TextAreaField extends React.Component {
   render() {
-    debugger;
-    var { input, meta, defaultValue, width, label, name } = this.props;
+    var { input, meta, width, label, name } = this.props;
     meta = meta || {};
     const { error, touched } = meta;
 
@@ -17,8 +16,7 @@ class TextAreaField extends React.Component {
           {...input}
           {...this.props}
           name={name}
-          width={width || 640}
-          value={defaultValue}
+          width={width || 640} 
           isInvalid={touched && !!error}
         />
       </Pane>
