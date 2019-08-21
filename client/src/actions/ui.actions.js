@@ -2,9 +2,11 @@ import axios from "axios";
 
 //use this for server props
 export const fetchuiprop = prop => async dispatch => {
-  const res = await axios.get("/api/uiprop/" + prop);
+  const res = await axios.get("/api/" + prop + "/nomenclator");
 
-  dispatch({ type: "SET_UI_PROP", data: { [prop]: res.data } });
+  if (res.data && res.data.data) {
+    dispatch({ type: "SET_UI_PROP", data: { [prop]: res.data.data } });
+  }
 };
 
 //Use this for local props

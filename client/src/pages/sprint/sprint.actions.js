@@ -2,7 +2,7 @@ import axios from "axios";
 import * as objectUtil from "../../util/object.util";
 
 export const openSprint = sprintId => async dispatch => {
-  const res = await axios.get("/api/sprint/get/" + (sprintId || 0));
+  const res = await axios.get("/api/sprint/load/" + (sprintId || 0));
 
   var sprint = res.data;
   sprint.tasks = objectUtil.listToObject(sprint.tasks);
