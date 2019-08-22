@@ -22,8 +22,7 @@ class TaskColumn extends Component {
               <TaskCard key={task.id}
                         task={task}
                         next = {next}
-                        previous = {previous}
-                        history={history}
+                        previous = {previous}                        
               />
             ))}
           </div>

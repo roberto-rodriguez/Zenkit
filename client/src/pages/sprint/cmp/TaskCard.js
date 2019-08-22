@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import { flags } from "../../../util/constants";
 import { Avatar, Tooltip } from "evergreen-ui";
 import { connect } from "react-redux";
@@ -22,7 +23,7 @@ class TaskCard extends Component {
       flag,
       estimatedHours,
       loggedHours
-    } = this.props.task;
+    } = this.props.task; 
 
     return (
       <div
@@ -110,4 +111,4 @@ const mapStateToProps = ({ sprint }, myProps) => {
 export default connect(
   mapStateToProps,
   sprintActions
-)(TaskCard);
+)(withRouter(TaskCard));
