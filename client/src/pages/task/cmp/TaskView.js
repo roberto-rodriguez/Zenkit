@@ -5,7 +5,7 @@ import "../Task.scss";
 
 class TaskView extends Component {
   componentDidMount() {
-    const { task, taskName, openTask, listTasks } = this.props;
+    const { task, taskName, openTask, listTasks } = this.props;   
 
     if (!task) {
       openTask(taskName);

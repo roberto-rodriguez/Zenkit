@@ -10,8 +10,6 @@ module.exports = app => {
 
     if (taskName && taskName != null) {
       query = "name@is@(S)" + taskName;
-    } else {
-      query = "id@is@(I)1";
     }
 
     const result = await serverProxy.get("/task/load?params=" + query);

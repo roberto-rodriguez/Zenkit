@@ -1,8 +1,4 @@
 import React, { Component } from "react";
-import * as taskActions from "../../task/task.actions";
-import { TextField, SelectField } from "../../common/fields/";
-import { reduxForm, Field } from "redux-form";
-import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import moment from "moment";
 import { Button, Dialog } from "evergreen-ui";
@@ -23,38 +19,44 @@ class SprintBoardHeader extends Component {
     let start = moment(startDate).format("MMM Do");
     let end = moment(endDate).format("MMM Do");
 
-    return null;
-
-    // return (
-    //   <div className="card">
-    //     <div className="card-content">
-    //       <div>
-    //         <strong>Name:</strong> {name}
-    //       </div>
-    //       <div>
-    //         <span className="sprint-detail">
-    //           <strong>Status:</strong> {active ? "active" : "not active"}
-    //         </span>
-    //         <span className="sprint-detail">
-    //           <strong>Start Date:</strong> {start}
-    //         </span>
-    //         <span className="sprint-detail">
-    //           <strong>End Date:</strong> {end}
-    //         </span>
-    //       </div>
-    //       <div>
-    //         <span className="sprint-detail">
-    //           <strong>Estimated Hours:</strong> {hours}
-    //         </span>
-    //         <span className="sprint-detail">
-    //           <strong>Logged Hours:</strong> {loggedHours}
-    //         </span>
-    //         <span className="sprint-detail">{completed}% Completed</span>
-    //       </div>
-    //     </div>
-    //     <AddTaskForm {...this.props} />
-    //   </div>
-    // );
+    return (
+      <div className="card">
+        <div className="card-content">
+          <div>
+            <strong>Name:</strong> {name}
+          </div>
+          <div>
+            <span className="sprint-detail">
+              <strong>Status:</strong> {active ? "active" : "not active"}
+            </span>
+            <span className="sprint-detail">
+              <strong>Start Date:</strong> {start}
+            </span>
+            <span className="sprint-detail">
+              <strong>End Date:</strong> {end}
+            </span>
+          </div>
+          <div>
+            <span className="sprint-detail">
+              <strong>Estimated Hours:</strong> {hours}
+            </span>
+            <span className="sprint-detail">
+              <strong>Logged Hours:</strong> {loggedHours}
+            </span>
+            <span className="sprint-detail">{completed}% Completed</span>
+          </div>
+        </div>
+       
+          <Button
+            className="card-action"
+            style={{ marginLeft: 25, marginBottom: 10 }}
+            onClick={()=>this.props.showTaskForm(true)}
+          >
+            Add Task
+          </Button>
+       
+      </div>
+    );
   }
 }
 
