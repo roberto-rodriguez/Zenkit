@@ -5,7 +5,6 @@ import { Button } from "evergreen-ui";
 
 class SprintBoardHeader extends Component {
   render() {
-    
     let sprint = this.props.sprint || {};
     let {
       name,
@@ -46,19 +45,19 @@ class SprintBoardHeader extends Component {
             <span className="sprint-detail">{completed}% Completed</span>
           </div>
         </div>
-       
+        <div className="card-action">
           <Button
-            className="card-action"
-            style={{ marginLeft: 25, marginBottom: 10 }}
-            onClick={()=>this.props.showTaskForm(true)}
+            onClick={() => this.props.showTaskForm(true)}
+            iconAfter="add"
+            height={32}
+            appearance="primary"
           >
             Add Task
           </Button>
-       
+        </div>
       </div>
     );
   }
 }
 
-export default connect(
-  null)(SprintBoardHeader);
+export default connect(null)(SprintBoardHeader);

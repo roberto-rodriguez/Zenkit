@@ -1,5 +1,6 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import { Button } from "evergreen-ui";
 import { TextField, SelectField } from "../../common/fields/";
 import validateTaskFields from "./validateTaskFields";
 
@@ -9,14 +10,14 @@ const assignee = [
   { id: 3, name: "Javier" },
   { id: 4, name: "Eduardo" },
   { id: 5, name: "Ismail" }
-];// only for testing will remove it soon
+]; // only for testing will remove it soon
 
 const statusName = [
   { id: 1, name: "TO DO" },
   { id: 2, name: "DOING" },
   { id: 3, name: "REVIEW" },
   { id: 4, name: "DONE" }
-];// only for testing will remove it soon
+]; // only for testing will remove it soon
 
 const TaskFormFirstPage = props => {
   const { handleSubmit } = props;
@@ -42,9 +43,15 @@ const TaskFormFirstPage = props => {
         source={statusName}
       />
       <div>
-        <button type="submit" className="next">
+        <Button
+          type="submit"
+          iconAfter="arrow-right"
+          height={32}
+          appearance="primary"
+          marginTop={16}
+        >
           Next
-        </button>
+        </Button>
       </div>
     </form>
   );
