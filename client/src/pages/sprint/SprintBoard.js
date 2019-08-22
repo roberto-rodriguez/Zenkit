@@ -1,39 +1,78 @@
 import React, { Component } from "react";
-import "./SprintBoard.scss";
-import Page from "../common/cmp/Page";
-import * as sprintActions from "./sprint.actions";
 import { connect } from "react-redux";
-import { SprintBoardHeader, TaskColumn } from "./cmp/";
+import Page from "../common/cmp/Page";
+import TaskForm from "./TaskForm";
+import * as sprintActions from "./sprint.actions";
+import { SprintBoardHeader, TaskColumn, validateTaskFields } from "./cmp/";
 import { taskStatusNames } from "../../util/constants";
+import "./SprintBoard.scss";
 
 class SprintBoard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showForm: false
+    };
+
+    this.showTaskForm = this.showTaskForm.bind(this);
+  }
+
   componentDidMount() {
     let { sprint, sprintId, openSprint } = this.props;
-  
+
     if (!sprint) {
       openSprint(sprintId);
     }
+    this.showTaskForm(false);
   }
+
+  showTaskForm = show => {
+    this.setState({ showForm: show });
+  };
 
   render() {
     return (
       <Page fullWidth>
         <div
-          className="section sprint-board header grey lighten-4"
-          style={{ height: 250, width: "100%" }}
-        >
-          <SprintBoardHeader sprint={this.props.sprint} />
-        </div>
-        <div
-          className="section row sprint-board kanban"
+        className="section header grey lighten-4 row"
           style={{
-            minHeight: 500,
-            width: "100%"
+            height: 350,
+            width: "60%",
+            position: "center",
+            display: this.state.showForm ? "" : "none"
           }}
         >
-          {Object.keys(taskStatusNames).map(taskStatusId => (
-            <TaskColumn taskStatusId={taskStatusId} key={taskStatusId} history={this.props.history} />
-          ))}
+          <TaskForm />
+        </div>
+        <div style={{ display: this.state.showForm ? "none" : "" }}>
+          <div
+            className="section sprint-board header grey lighten-4"
+            style={{
+              height: 250,
+              width: "100%"
+            }}
+          >
+            <SprintBoardHeader
+              sprint={this.props.sprint}
+              showTaskForm={this.showTaskForm}
+            />
+          </div>
+          <div
+            className="section row sprint-board kanban"
+            style={{
+              minHeight: 500,
+              width: "100%"
+            }}
+          >
+            {Object.keys(taskStatusNames).map(taskStatusId => (
+              <TaskColumn
+                taskStatusId={taskStatusId}
+                key={taskStatusId}
+                history={this.props.history}
+              />
+            ))}
+          </div>
         </div>
       </Page>
     );
@@ -63,6 +102,6 @@ function mapStateToProps({ sprint }, props) {
 }
 
 export default connect(
-  mapStateToProps,
-  sprintActions
-)(SprintBoard);
+    mapStateToProps,
+    sprintActions
+  )(SprintBoard);
