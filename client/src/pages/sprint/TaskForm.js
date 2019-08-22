@@ -32,20 +32,21 @@ class TaskForm extends Component {
     console.log("se adicionaron los valores via action taskAdd");
   };
 
-  render() {    
-
+  render() {
     const { page } = this.state;
     return (
-      <div
-      className="col s12"
-      >
-        {page === 1 && <TaskFormFirstPage onSubmit={this.nextPage} />}
-        {page === 2 && (
-          <TaskFormSecondPage
-            previousPage={this.previousPage}
-            onSubmit={this.onSubmitTask}
-          />
-        )}
+      <div className="col s8 offset-s2">
+      <div className="card">
+        <div className="card-content">
+          {page === 1 && <TaskFormFirstPage onSubmit={this.nextPage} />}
+          {page === 2 && (
+            <TaskFormSecondPage
+              previousPage={this.previousPage}
+              onSubmit={this.onSubmitTask}
+            />
+          )}
+          </div>
+        </div>
       </div>
     );
   }
@@ -64,4 +65,9 @@ const mapStateToProps = ({ form }, ownProps) => {
 export default reduxForm({
   validate: validateTaskFields,
   form: "taskForm"
-})(connect(mapStateToProps, taskActions)(withRouter(TaskForm)));
+})(
+  connect(
+    mapStateToProps,
+    taskActions
+  )(withRouter(TaskForm))
+);

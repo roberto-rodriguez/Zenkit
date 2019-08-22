@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Page from "../common/cmp/Page";
 import TaskForm from "./TaskForm";
 import * as sprintActions from "./sprint.actions";
-import { SprintBoardHeader, TaskColumn, validateTaskFields } from "./cmp/";
+import { SprintBoardHeader, TaskColumn } from "./cmp/";
 import { taskStatusNames } from "../../util/constants";
 import { DragDropContext } from 'react-beautiful-dnd';
 import "./SprintBoard.scss";
@@ -36,7 +36,7 @@ class SprintBoard extends Component {
     return (
       <Page fullWidth>
         <div
-        className="section header grey lighten-4 row"
+        className="section header row"
           style={{
             height: 350,
             width: "60%",

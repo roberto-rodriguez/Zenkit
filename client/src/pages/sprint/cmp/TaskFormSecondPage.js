@@ -1,5 +1,6 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import { Button } from "evergreen-ui";
 import { TextField, SelectField, TextAreaField } from "../../common/fields/";
 import validateTaskFields from "./validateTaskFields";
 
@@ -19,17 +20,35 @@ const TaskFormSecondPage = props => {
         name="estimatedHours"
         type="text"
         component={TextField}
-        label="Estimated Hours"
-        defaultValue="Hours"
+        label="Estimated Hours"        
       />
-      <Field name="description" component={TextAreaField} label="Description" />
+      <Field
+        name="description"
+        component={TextAreaField}
+        label="Description"
+        width={430}
+      />
       <div>
-        <button type="button" className="previous" onClick={previousPage}>
+        <Button
+          type="button"
+          onClick={previousPage}
+          iconBefore="arrow-left"
+          height={32}
+          appearance="primary"
+          marginRight={16}
+          marginTop={16}
+        >
           Previous
-        </button>
-        <button type="submit" disabled={pristine || submitting}>
+        </Button>
+        <Button
+          type="submit"
+          disabled={pristine || submitting}
+          height={32}
+          appearance="primary"
+          marginTop={16}
+        >
           Submit
-        </button>
+        </Button>
       </div>
     </form>
   );
