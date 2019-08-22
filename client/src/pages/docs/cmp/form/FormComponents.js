@@ -3,7 +3,12 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 import { Button } from "evergreen-ui";
-import { TextField, SelectField, TextAreaField } from "../../../common/fields/";
+import {
+  TextField,
+  SelectField,
+  TextAreaField,
+  DateField
+} from "../../../common/fields/";
 import SideSheet from "../../../common/cmp/SideSheet";
 import formSideSheetData from "./formSideSheetData";
 
@@ -11,7 +16,8 @@ const formFields = [
   { name: "firstName", label: "First Name" },
   { name: "contractType", label: "Contract Type" },
   { name: "provinces", label: "Provinces" },
-  { name: "description", label: "Description" }
+  { name: "description", label: "Description" },
+  { name: "creationDate", label: "Creation Date" }
 ];
 
 let contractTypes = [
@@ -89,6 +95,20 @@ class FormComponents extends React.Component {
           <div className="row">
             <div className="col">
               <Field
+                name={"creationDate"}
+                label="Creation Date"
+                component={DateField}
+                defaultValue={values["creationDate"]}
+                placeholder="Placeholder text here"
+              />
+            </div>
+            <div className="col">
+              {this.buildDetailsButton("textAreaField")}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <Field
                 name={"description"}
                 label="Description"
                 component={TextAreaField}
@@ -100,6 +120,7 @@ class FormComponents extends React.Component {
               {this.buildDetailsButton("textAreaField")}
             </div>
           </div>
+          
           <button
             type="submit"
             className="teal btn-flat white-text centered left"

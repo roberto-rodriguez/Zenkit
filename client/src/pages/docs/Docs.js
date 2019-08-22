@@ -72,7 +72,7 @@ class Docs extends React.Component {
             role="tabpanel"
             display={"block"}
           >
-            <p class="flow-text">Panel {tabs[selectedIndex]}</p>
+            <p className="flow-text">Panel {tabs[selectedIndex]}</p>
           </Pane>
         );
     }

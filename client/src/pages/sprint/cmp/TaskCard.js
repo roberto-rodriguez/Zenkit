@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import { flags } from "../../../util/constants";
-import Avatar from "react-avatar";
-import {connect} from "react-redux";
+import { Avatar, Tooltip } from "evergreen-ui";
+import { connect } from "react-redux";
 import * as sprintActions from "../sprint.actions";
 import { Draggable } from 'react-beautiful-dnd';
 
 class TaskCard extends Component {
-  moveIt(destinationStatus){
-    let { task, sprintId, moveTask  } = this.props;
+  click = name => {
+    this.props.history.push("/task/" + name);
+  };
+
+  moveIt(destinationStatus) {
+    let { task, sprintId, moveTask } = this.props;
     moveTask(sprintId, task.id, destinationStatus);
   }
   render() {
@@ -29,11 +33,10 @@ class TaskCard extends Component {
       {...provided.draggableProps}
       {...provided.dragHandleProps}>
         onClick={() => {this.click(name)}}
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", borderTopRightRadius: 20 }}
         <div className="card-content">
           <div className="row">
             {flag && (
-              // eslint-disable-next-line jsx-a11y/anchor-is-valid
               <a
                 className={
                   "left user-button btn-floating waves-light " +
@@ -55,11 +58,14 @@ class TaskCard extends Component {
               </h6>
             </div>
             <div className="right" style={{ textAlign: "center" }}>
-              <Avatar
-                name={assignee}
-                size={40}
-                style={{ position: "absolute", right: "0px", top: "0px" }}
-              />
+              <Tooltip content={assignee}>
+                <Avatar
+                  isSolid
+                  name={assignee}
+                  size={40}
+                  style={{ position: "absolute", right: "0px", top: "0px" }}
+                />
+              </Tooltip>
             </div>
           </div>
           <div className="row">
@@ -70,12 +76,26 @@ class TaskCard extends Component {
               {loggedHours}/{estimatedHours}
             </span>
             <div className={"right"}>
-              {this.props.previous?<i className="material-icons grey-text darken-1 cursor-pointer" onClick={event => {this.moveIt(this.props.previous)}}>
-                navigate_before
-              </i>:null}
-              {this.props.next?<i className="material-icons grey-text darken-1 cursor-pointer" onClick={event => {this.moveIt(this.props.next)}}>
-                navigate_next
-              </i>:null}
+              {this.props.previous ? (
+                <i
+                  className="material-icons grey-text darken-1 cursor-pointer"
+                  onClick={event => {
+                    this.moveIt(this.props.previous);
+                  }}
+                >
+                  navigate_before
+                </i>
+              ) : null}
+              {this.props.next ? (
+                <i
+                  className="material-icons grey-text darken-1 cursor-pointer"
+                  onClick={event => {
+                    this.moveIt(this.props.next);
+                  }}
+                >
+                  navigate_next
+                </i>
+              ) : null}
             </div>
           </div>
         </div>
@@ -88,8 +108,11 @@ class TaskCard extends Component {
 }
 const mapStateToProps = ({ sprint }, myProps) => {
   return {
-    sprintId: sprint.open?sprint.open.id:null
+    sprintId: sprint.open ? sprint.open.id : null
   };
 };
 
-export default connect(mapStateToProps, sprintActions)(TaskCard);
+export default connect(
+  mapStateToProps,
+  sprintActions
+)(TaskCard);
