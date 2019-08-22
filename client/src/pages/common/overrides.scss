@@ -1,19 +1,18 @@
- //To Override react-widgets input styles
- input {
-   border-bottom: 0px !important;
-   margin: 0px !important;
-   padding: 0px!important;
-   height: 2.3rem !important;
- }
+ //To Override Date Picker Styles
 
- .text-field {
-    :focus {
-     border: 1px solid #66afe9 !important;
-     box-shadow: 0 0 8px rgba(102, 175, 233, 0.6) !important;
-   }
-
-   input {
-     border: #ccc 1px solid !important;
-     border-radius: 4px !important;
-   }
+ .DayPickerInput input{
+    color: #425A70;
+    box-sizing: border-box;
+    font-family: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	  border-radius: 3px;
+		color: #425A70;
+		border: none;
+    background-color: white;
+    box-shadow: inset 0 0 0 1px rgba(67, 90, 111, 0.3), inset 0 1px 2px rgba(67, 90, 111, 0.14);
+	  line-height: 16px;
+	  letter-spacing: 0;
+	  font-weight: 400;
+	 	width:320px;
+     height: 32px!important;
  }
+  

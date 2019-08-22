@@ -1,13 +1,11 @@
-import { ConfigProvider } from "react-avatar";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import reduxThunk from "redux-thunk";
-import reducers from "./reducers";
-import { avatarColors } from "./util/constants";
- 
+import reducers from "./reducers"; 
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
@@ -18,9 +16,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConfigProvider colors={avatarColors}>
-      <App />
-    </ConfigProvider>
+    <App />
   </Provider>,
   document.querySelector("#root")
 );

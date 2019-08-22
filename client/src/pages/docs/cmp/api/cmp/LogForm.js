@@ -20,6 +20,13 @@ class LogForm extends React.Component {
     });
   };
 
+  componentDidMount() {
+    this.props.initialize({
+      name: "Some initial value",
+      description: "Initial value can be set using this.props.initialize"
+    });
+  }
+
   render() {
     return (
       <Pane
