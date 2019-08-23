@@ -6,7 +6,7 @@ import { Droppable } from 'react-beautiful-dnd';
 
 class TaskColumn extends Component {
   render() {
-    let { taskStatusId, columnTasks, history } = this.props;
+    let { taskStatusId, columnTasks } = this.props;
 
 
     const statusIds = Object.keys(taskStatusNames);

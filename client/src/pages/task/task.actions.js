@@ -19,8 +19,8 @@ export const listTasks = () => async dispatch => {
   }
 };
 
-export const addTask = (history, formValues) => async dispatch => {
-  const res = await axios.post("/api/task/add/" + (formValues || null));
+export const save = (history, formValues) => async dispatch => {
+  const res = await axios.post("/api/task/save/", formValues);
 
   if (res.data) {
     dispatch({ type: "SET_ADD_TASK", data: res.data });

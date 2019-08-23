@@ -31,7 +31,7 @@ const TaskFormFirstPage = props => {
         label="Task Title"
       />
       <Field
-        name="assignee"
+        name="assigneeId"
         component={SelectField}
         label="Assignee"
         source={assignee}
