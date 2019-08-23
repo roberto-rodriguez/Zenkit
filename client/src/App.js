@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import { SprintList, Task, Login, SprintBoard, Profile, Docs } from "./pages/";
+import { SprintList, Task, TaskBoard, Login, SprintBoard, Profile, Docs } from "./pages/";
 import { connect } from "react-redux";
 import * as authActions from "./pages/auth/auth.actions";
 import "./pages/common/common.scss";
@@ -17,6 +17,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Route exact path="/" component={SprintBoard} />
+        <Route exact path="/tasks" component={TaskBoard} />
         <Route exact path="/task/:taskName" component={Task} />
         <Route exact path="/sprint/:sprintId" component={SprintBoard} />
         <Route exact path="/sprints" component={SprintList} />

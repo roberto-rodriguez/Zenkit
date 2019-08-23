@@ -38,6 +38,9 @@ class NavBar extends Component {
                   <li>
                     <NavLink to="/sprints">Sprints</NavLink>
                   </li>
+                  <li>
+                    <NavLink to="/tasks">Tasks</NavLink>
+                  </li>
                 </ul>
               </li>
             )}
