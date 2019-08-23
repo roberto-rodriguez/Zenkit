@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TaskCard from "./TaskCard";
 import { connect } from "react-redux";
 import { taskStatusNames } from "../../../util/constants";
+import { Droppable } from 'react-beautiful-dnd';
 
 class TaskColumn extends Component {
   render() {
@@ -15,7 +16,10 @@ class TaskColumn extends Component {
 
     return (
       <div className="col s3 transparent">
-        <div className={"card task-column blue lighten-5"}>
+        <Droppable droppableId={taskStatusId} >
+          {provided => {
+            return (
+        <div className={"card task-column blue lighten-5"} {...provided.droppableProps} ref={provided.innerRef}>
           <div className="card-content">
             <span className="card-title">{taskStatusNames[taskStatusId]}</span>
             {columnTasks.map((task) => (
@@ -25,8 +29,12 @@ class TaskColumn extends Component {
                         previous = {previous}                        
               />
             ))}
+            {provided.placeholder}
           </div>
         </div>
+           );
+          }}
+      </Droppable>
       </div>
     );
   }

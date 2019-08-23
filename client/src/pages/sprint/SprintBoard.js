@@ -6,6 +6,7 @@ import * as sprintActions from "./sprint.actions";
 import { SprintBoardHeader, TaskColumn } from "./cmp/";
 import { taskStatusNames } from "../../util/constants";
 import "./SprintBoard.scss";
+import { DragDropContext } from 'react-beautiful-dnd';
 
 class SprintBoard extends Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class SprintBoard extends Component {
               showTaskForm={this.showTaskForm}
             />
           </div>
+          <DragDropContext onDragEnd={this.props.onDragEnd}>
           <div
             className="section row sprint-board kanban"
             style={{
@@ -73,6 +75,7 @@ class SprintBoard extends Component {
               />
             ))}
           </div>
+          </DragDropContext>
         </div>
       </Page>
     );
