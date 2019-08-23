@@ -39,7 +39,7 @@ export const updateTask = (history, formValues) => async dispatch => {
 };
 
 export const removeTask = (taskId, history) => async dispatch => {
-  const res = await axios.delete("/api/task/list/del" + (taskId || 0));
+  const res = await axios.delete("/api/task/list/del/" + (taskId || 0));
 
   dispatch({ type: "SET_REMOVE_TASK", data: res.data });
   history.push("/");
@@ -49,9 +49,9 @@ export const filterTasks = (filters) => async dispatch => {
   var params = Object.keys(filters).map(function(filter) {
     switch (filter) {
       case 'title':
-          return "title,description@is@(S)"+filters[filter] 
+          return "title,name@is@(S)"+filters[filter] 
       case 'sprint':
-      case 'assignee':
+      case 'assignee.id':
       case 'status':  
         return filter + "@is@(I)"+filters[filter]
       default:
@@ -59,7 +59,7 @@ export const filterTasks = (filters) => async dispatch => {
     }
   }).join("@p@");
 
-  const res = await axios.get("/api/task/list?params=" + params);
+  const res = await axios.get("/api/task/list/" + params);
 
   if (res.data) {
     var tasks = objectUtil.listToObject(res.data);

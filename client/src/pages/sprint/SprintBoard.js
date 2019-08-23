@@ -6,7 +6,7 @@ import * as sprintActions from "./sprint.actions";
 import { SprintBoardHeader, TaskColumn } from "./cmp/";
 import { taskStatusNames } from "../../util/constants";
 import "./SprintBoard.scss";
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext } from "react-beautiful-dnd";
 
 class SprintBoard extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class SprintBoard extends Component {
     return (
       <Page fullWidth>
         <div
-        className="section header row"
+          className="section header row"
           style={{
             height: 350,
             width: "60%",
@@ -44,7 +44,7 @@ class SprintBoard extends Component {
             display: this.state.showForm ? "" : "none"
           }}
         >
-          <TaskForm />
+          <TaskForm onSubmit={() => {}} />
         </div>
         <div style={{ display: this.state.showForm ? "none" : "" }}>
           <div
@@ -60,21 +60,21 @@ class SprintBoard extends Component {
             />
           </div>
           <DragDropContext onDragEnd={this.props.onDragEnd}>
-          <div
-            className="section row sprint-board kanban"
-            style={{
-              minHeight: 500,
-              width: "100%"
-            }}
-          >
-            {Object.keys(taskStatusNames).map(taskStatusId => (
-              <TaskColumn
-                taskStatusId={taskStatusId}
-                key={taskStatusId}
-                history={this.props.history}
-              />
-            ))}
-          </div>
+            <div
+              className="section row sprint-board kanban"
+              style={{
+                minHeight: 500,
+                width: "100%"
+              }}
+            >
+              {Object.keys(taskStatusNames).map(taskStatusId => (
+                <TaskColumn
+                  taskStatusId={taskStatusId}
+                  key={taskStatusId}
+                  history={this.props.history}
+                />
+              ))}
+            </div>
           </DragDropContext>
         </div>
       </Page>
@@ -105,6 +105,6 @@ function mapStateToProps({ sprint }, props) {
 }
 
 export default connect(
-    mapStateToProps,
-    sprintActions
-  )(SprintBoard);
+  mapStateToProps,
+  sprintActions
+)(SprintBoard);

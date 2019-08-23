@@ -31,7 +31,7 @@ class SelectField extends React.Component {
     return (
       <Evergreen.SelectField
         {...input}
-        width={width || 320}
+        width={"100%" || width}
         value={defaultValue}
         label={label}
         name={name}

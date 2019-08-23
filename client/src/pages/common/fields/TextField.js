@@ -11,7 +11,7 @@ class TextField extends React.Component {
         {...input}
         label={label}
         name={name}
-        width={width || 320}
+        width={'100%' || width}
         hint={!(touched && error) && hint}
         validationMessage={touched && error}
       />
