@@ -44,3 +44,26 @@ export const removeTask = (taskId, history) => async dispatch => {
   dispatch({ type: "SET_REMOVE_TASK", data: res.data });
   history.push("/");
 };
+
+export const filterTasks = (filters) => async dispatch => {
+  var params = Object.keys(filters).map(function(filter) {
+    switch (filter) {
+      case 'title':
+          return "title,description@is@(S)"+filters[filter] 
+      case 'sprint':
+      case 'assignee':
+      case 'status':  
+        return filter + "@is@(I)"+filters[filter]
+      default:
+        break;
+    }
+  }).join("@p@");
+
+  const res = await axios.get("/api/task/list?params=" + params);
+
+  if (res.data) {
+    var tasks = objectUtil.listToObject(res.data);
+
+    dispatch({ type: "SET_TASK_LIST", data: tasks });
+  }
+};
