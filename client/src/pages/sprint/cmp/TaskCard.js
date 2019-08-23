@@ -4,6 +4,7 @@ import { flags } from "../../../util/constants";
 import { Avatar, Tooltip } from "evergreen-ui";
 import { connect } from "react-redux";
 import * as sprintActions from "../sprint.actions";
+import { Draggable } from 'react-beautiful-dnd';
 
 class TaskCard extends Component {
   click = name => {
@@ -26,12 +27,18 @@ class TaskCard extends Component {
     } = this.props.task; 
 
     return (
+      <Draggable key={name} draggableId={name} index={id}>
+      {provided => {
+        return (
       <div
         className="task-card card"
         onClick={() => {
           this.click(name);
         }}
         style={{ cursor: "pointer", borderTopRightRadius: 20 }}
+        ref={provided.innerRef}
+        {...provided.draggableProps}
+        {...provided.dragHandleProps}
       >
         <div className="card-content">
           <div className="row">
@@ -99,6 +106,9 @@ class TaskCard extends Component {
           </div>
         </div>
       </div>
+         );
+        }}
+      </Draggable>
     );
   }
 }
