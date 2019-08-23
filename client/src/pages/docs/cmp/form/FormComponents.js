@@ -15,7 +15,7 @@ import formSideSheetData from "./formSideSheetData";
 const formFields = [
   { name: "firstName", label: "First Name" },
   { name: "contractType", label: "Contract Type" },
-  { name: "provinces", label: "Provinces" },
+  // { name: "provinces", label: "Provinces" },
   { name: "description", label: "Description" },
   { name: "creationDate", label: "Creation Date" }
 ];
@@ -30,6 +30,14 @@ class FormComponents extends React.Component {
   state = {
     showField: null
   };
+
+  componentDidMount() {
+    debugger;
+    this.props.initialize({
+      firstName: "Initial Name",
+      creationDate: new Date()
+    });
+  }
 
   onSave = () => {
     const { values } = this.props;
@@ -98,13 +106,10 @@ class FormComponents extends React.Component {
                 name={"creationDate"}
                 label="Creation Date"
                 component={DateField}
-                defaultValue={values["creationDate"]}
                 placeholder="Placeholder text here"
               />
             </div>
-            <div className="col">
-              {this.buildDetailsButton("textAreaField")}
-            </div>
+            <div className="col">{this.buildDetailsButton("dateField")}</div>
           </div>
           <div className="row">
             <div className="col">
@@ -120,7 +125,7 @@ class FormComponents extends React.Component {
               {this.buildDetailsButton("textAreaField")}
             </div>
           </div>
-          
+
           <button
             type="submit"
             className="teal btn-flat white-text centered left"
