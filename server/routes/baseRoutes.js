@@ -8,6 +8,9 @@ module.exports = app => {
 
     if (Number.isInteger(params)) {
       params = "id@is@(I)" + params;
+    }else
+    if (entity == "task") {
+      params = "name@is@(S)" + params;
     }
 
     const result = await serverProxy.get(
