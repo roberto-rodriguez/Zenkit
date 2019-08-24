@@ -3,6 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import { Button } from "evergreen-ui";
 import { TextField, SelectField } from "../../common/fields/";
 import PropTypes from "prop-types";
+import { taskStatusNames } from "../../../util/constants";
 
 const assignee = [
     { id: 1, name: "Robert" },
@@ -12,12 +13,9 @@ const assignee = [
     { id: 5, name: "Ismail" }
   ]; // only for testing will remove it soon
   
-  const statusName = [
-    { id: 1, name: "TO DO" },
-    { id: 2, name: "DOING" },
-    { id: 3, name: "REVIEW" },
-    { id: 4, name: "DONE" }
-  ]; // only for testing will remove it soon
+const statusName = Object.keys(taskStatusNames).map(function(value) {
+  return { id: value, name: taskStatusNames[value]}
+});
 
 const TaskFilterForm = props => {
     const { handleSubmit } = props;

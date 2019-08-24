@@ -46,12 +46,13 @@ export const removeTask = (taskId, history) => async dispatch => {
 };
 
 export const filterTasks = (filters) => async dispatch => {
-  var params = Object.keys(filters).map(function(filter) {
+  var params = Object.keys(filters || {}).map(function(filter) {
     switch (filter) {
       case 'title':
           return "title,name@is@(S)"+filters[filter] 
+      case 'assignee':
+          return "assignee.id@is@(I)"+filters[filter]
       case 'sprint':
-      case 'assignee.id':
       case 'status':  
         return filter + "@is@(I)"+filters[filter]
       default:
