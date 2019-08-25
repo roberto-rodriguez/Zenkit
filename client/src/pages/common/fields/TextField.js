@@ -1,5 +1,6 @@
 import React from "react";
 import { TextInputField } from "evergreen-ui";
+
 class TextField extends React.Component {
   render() {
     var { input, meta, hint, width, label, name } = this.props;
@@ -10,7 +11,7 @@ class TextField extends React.Component {
       <TextInputField
         {...input}
         label={label}
-        name={name}
+        name={name}        
         width={'100%' || width}
         hint={!(touched && error) && hint}
         validationMessage={touched && error}

@@ -2,10 +2,22 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as taskActions from "../task.actions";
 import "../Task.scss";
+import { Button, Pane, Dialog } from "evergreen-ui";
 
 class TaskView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showDialog: false,
+      isLoading: false
+    };
+
+    this.deleteTask = this.deleteTask.bind(this);
+  }
+
   componentDidMount() {
-    const { task, taskName, openTask, listTasks } = this.props;   
+    const { task, taskName, openTask, listTasks } = this.props;
 
     if (!task) {
       openTask(taskName);
@@ -13,7 +25,24 @@ class TaskView extends Component {
     }
   }
 
+  componentDidUpdate() {
+    if (this.state.isLoading === true) {
+      window.setTimeout(() => {
+        this.setState({
+          showDialog: false
+        });
+      }, 2000);
+    }
+  }
+
+  deleteTask = id => {
+    window.setTimeout(() => {
+      this.props.removeTask(this.props.history, id);
+    }, 2000);
+  };
+
   render() {
+    console.log(this.state.showDialog, this.state.isLoading);
     const { sprintName } = this.props || "";
     const {
       id,
@@ -29,7 +58,7 @@ class TaskView extends Component {
     } = this.props.task || "";
 
     return (
-      <div className="section">
+      <div className="col s12">
         <div
           className="section"
           style={{
@@ -47,7 +76,7 @@ class TaskView extends Component {
                 >
                   Asigned
                   <a
-                    href="/task"
+                    href="/"
                     className="btn disabled"
                     style={{
                       marginLeft: 10
@@ -62,7 +91,7 @@ class TaskView extends Component {
                 <h6>
                   Status
                   <a
-                    href="/task"
+                    href="/"
                     className="btn disabled"
                     style={{
                       marginLeft: 10
@@ -77,7 +106,7 @@ class TaskView extends Component {
                 <h6>
                   Flag
                   <a
-                    href="/task"
+                    href="/"
                     className="btn disabled"
                     style={{
                       marginLeft: 10
@@ -94,9 +123,14 @@ class TaskView extends Component {
                     marginRight: 10
                   }}
                 >
-                  <a href="/task" className="waves-effect waves-light btn">
-                    <i className="material-icons right">+</i>Add Comment
-                  </a>
+                  <Button
+                    onClick={"here func for add comment"}
+                    iconAfter="add"
+                    height={32}
+                    appearance="primary"
+                  >
+                    Add Comment
+                  </Button>
                 </h6>
               </div>
             </div>
@@ -148,7 +182,6 @@ class TaskView extends Component {
             </div>
           </div>
         </div>
-        <br />
         <div
           className="section"
           style={{
@@ -157,33 +190,50 @@ class TaskView extends Component {
         >
           <div className="row">
             <div className="col s12 transparent">
-              <div className={"card task-column blue lighten-5"}>
-                <div className="card-content" />
-                <h6>
-                  <a
-                    href="/"
-                    className="waves-effect waves-teal right"
-                    style={{
-                      textDecoration: "underline",
-                      left: -50
-                    }}
-                  >
-                    Remove
-                  </a>
-                </h6>
-                <h6>
-                  <a
-                    href="/"
-                    className="waves-effect waves-teal right"
-                    style={{
-                      textDecoration: "underline",
-                      left: -80,
-                      rigth: -50
-                    }}
+              <div className="card blue lighten-5">
+                <Pane
+                  display="flex"
+                  alignItems="right"
+                  justifyContent="right"
+                  padding={16}
+                  borderRadius={3}
+                >
+                  <Button
+                    onClick={() => this.props.showTaskEdit(true)}
+                    iconAfter="edit"
+                    height={32}
+                    appearance="primary"
+                    marginRight={16}
                   >
                     Edit
-                  </a>
-                </h6>
+                  </Button>
+                  <Button
+                    onClick={() => this.setState({ showDialog: true })}
+                    iconAfter="remove"
+                    height={32}
+                    appearance="primary"
+                    marginRight={16}
+                  >
+                    Remove
+                  </Button>
+                  <Dialog
+                    isShown={this.state.showDialog}
+                    title="Delete confirmation"
+                    onCloseComplete={() => {
+                      this.setState({ showDialog: false, isLoading: false });
+                    }}
+                    isConfirmLoading={this.state.isLoading}
+                    onConfirm={() => {
+                      this.setState({ isLoading: true });
+                      this.deleteTask(id);
+                    }}
+                    confirmLabel={
+                      this.state.isLoading ? "Deleting..." : "Confirm Delete"
+                    }
+                  >
+                    Are you sure to remove this task?
+                  </Dialog>
+                </Pane>
                 <div>
                   <div>
                     <h4
@@ -220,13 +270,14 @@ class TaskView extends Component {
 function mapStateToProps({ task, sprint }, props) {
   var taskName =
     props.match && props.match.params && props.match.params.taskName;
-  const { open } = task;
+
+  const { taskOpen } = task;
   let taskData;
 
   if (taskName) {
     //If trying to open a Task by the name on the url '/task/taskName'
-    if (open && open.name == taskName) {
-      taskData = { ...open };
+    if (taskOpen && taskOpen.name == taskName) {
+      taskData = { ...taskOpen };
     }
   }
 

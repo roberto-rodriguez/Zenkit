@@ -1,5 +1,5 @@
 const validateTaskFields = values => {
-  const errors = {};  
+  const errors = {};
   if (!values.title) {
     errors.title = "Required";
   }
@@ -14,6 +14,8 @@ const validateTaskFields = values => {
   }
   if (!values.estimatedHours) {
     errors.estimatedHours = "Required";
+  }else if (isNaN(Number(values.estimatedHours))) {
+    errors.estimatedHours = 'Must be a number'
   }
   if (!values.description) {
     errors.description = "Required";

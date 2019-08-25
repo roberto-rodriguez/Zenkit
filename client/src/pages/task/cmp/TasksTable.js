@@ -13,7 +13,7 @@ class TasksTable extends Component {
                         <TextTableHeaderCell>Title</TextTableHeaderCell>
                         {/* TODO: I dont see any field related to sprint at task results */}
                         <TextTableHeaderCell>Sprint</TextTableHeaderCell>
-                        <TextTableHeaderCell>Assigne</TextTableHeaderCell>
+                        <TextTableHeaderCell>Assignee</TextTableHeaderCell>
                         <TextTableHeaderCell>Estimated H.</TextTableHeaderCell>
                         <TextTableHeaderCell>Logged H.</TextTableHeaderCell>
                         <TextTableHeaderCell>Status</TextTableHeaderCell>

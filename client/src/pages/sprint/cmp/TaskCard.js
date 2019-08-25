@@ -44,6 +44,7 @@ class TaskCard extends Component {
               <div className="card-content">
                 <div className="row">
                   {flag && (
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
                     <a
                       className={
                         "left user-button btn-floating waves-light " +

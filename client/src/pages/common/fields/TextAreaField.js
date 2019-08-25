@@ -16,7 +16,7 @@ class TextAreaField extends React.Component {
           {...input}
           {...this.props}
           name={name}
-          width={width || 640} 
+          width={width || 640}
           isInvalid={touched && !!error}
         />
       </Pane>

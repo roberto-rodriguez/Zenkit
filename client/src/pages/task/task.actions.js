@@ -19,27 +19,18 @@ export const listTasks = () => async dispatch => {
   }
 };
 
-export const save = (history, formValues) => async dispatch => {
+export const saveTask = (history, formValues) => async dispatch => {
   const res = await axios.post("/api/task/save/", formValues);
 
   if (res.data) {
     dispatch({ type: "SET_ADD_TASK", data: res.data });
-    history.push("/");
+    //history.push("/");
+    window.location.reload();//temporal way to refresh the page
   }
 };
 
-export const updateTask = (history, formValues) => async dispatch => {
-  const res = await axios.patch("/api/task/update/" + (formValues || ""));
-
-  dispatch({
-    type: "SET_UPDATE_TASK",
-    data: res.data
-  });
-  history.push("/");
-};
-
-export const removeTask = (taskId, history) => async dispatch => {
-  const res = await axios.delete("/api/task/list/del/" + (taskId || 0));
+export const removeTask = (history, taskId) => async dispatch => {
+  const res = await axios.get("/api/task/delete/" + (taskId || 0));
 
   dispatch({ type: "SET_REMOVE_TASK", data: res.data });
   history.push("/");

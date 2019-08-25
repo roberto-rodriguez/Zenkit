@@ -5,7 +5,7 @@ import * as uiActions from "../../../actions/ui.actions";
 
 class SelectField extends React.Component {
   componentDidMount() {
-    var { source, data, fetchuiprop } = this.props;
+    var { source, data, fetchuiprop } = this.props;   
 
     if (!data) {
       fetchuiprop(source);
@@ -21,7 +21,6 @@ class SelectField extends React.Component {
       data,
       valueField,
       textField,
-      defaultValue,
       label,
       name
     } = this.props;
@@ -32,13 +31,11 @@ class SelectField extends React.Component {
       <Evergreen.SelectField
         {...input}
         width={"100%" || width}
-        value={defaultValue}
         label={label}
         name={name}
         hint={!(touched && error) && hint}
         validationMessage={touched && error}
-      >
-        <option />
+      >        
         {(data || []).map((item, i) => (
           <option key={i} value={item[valueField || "id"]}>
             {item[textField || "name"]}

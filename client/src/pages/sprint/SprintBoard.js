@@ -44,7 +44,7 @@ class SprintBoard extends Component {
             display: this.state.showForm ? "" : "none"
           }}
         >
-          <TaskForm onSubmit={() => {}} />
+          <TaskForm {...this.props} />
         </div>
         <div style={{ display: this.state.showForm ? "none" : "" }}>
           <div

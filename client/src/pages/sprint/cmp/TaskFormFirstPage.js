@@ -4,14 +4,6 @@ import { Button } from "evergreen-ui";
 import { TextField, SelectField } from "../../common/fields/";
 import validateTaskFields from "./validateTaskFields";
 
-const assignee = [
-  { id: 1, name: "Robert" },
-  { id: 2, name: "Annier" },
-  { id: 3, name: "Javier" },
-  { id: 4, name: "Eduardo" },
-  { id: 5, name: "Ismail" }
-]; // only for testing will remove it soon
-
 const statusName = [
   { id: 1, name: "TO DO" },
   { id: 2, name: "DOING" },
@@ -20,8 +12,8 @@ const statusName = [
 ]; // only for testing will remove it soon
 
 const TaskFormFirstPage = props => {
-  const { handleSubmit } = props;
-
+  const { handleSubmit } = props || ""; 
+     
   return (
     <form onSubmit={handleSubmit}>
       <Field
@@ -34,7 +26,7 @@ const TaskFormFirstPage = props => {
         name="assigneeId"
         component={SelectField}
         label="Assignee"
-        source={assignee}
+        source="client"
       />
       <Field
         name="status"
@@ -61,5 +53,7 @@ export default reduxForm({
   form: "taskForm", // <------ same form name
   destroyOnUnmount: false, // <------ preserve form data
   forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
+  enableReinitialize: true,
+  keepDirtyOnReinitialize: true,
   validateTaskFields
 })(TaskFormFirstPage);

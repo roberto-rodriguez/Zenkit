@@ -1,5 +1,5 @@
 const initialState = {
-  open: null, //open Task goes here
+  taskOpen: null, //open Task goes here
   list: null // object of {id: task}
 };
 
@@ -10,7 +10,7 @@ export default function taskReducer(state = initialState, action) {
     case "SET_OPEN_TASK":
       return {
         ...state,
-        open: { ...data }
+        taskOpen: { ...data }
       };
     case "SET_TASK_LIST":
       return {
@@ -18,11 +18,6 @@ export default function taskReducer(state = initialState, action) {
         list: { ...data }
       };
     case "SET_ADD_TASK":
-      return {
-        ...state,
-        list: { ...data }
-      };
-    case "SET_UPDATE_TASK":
       return {
         ...state,
         list: { ...data }
