@@ -61,7 +61,10 @@ class Docs extends React.Component {
       case "coding":
         return <CodingConventions />;
       case "form":
-        return <FormComponents />;
+        return <FormComponents initialValues={{
+          firstName: "Initial value for  Name",
+          creationDate: new Date()
+        }}/>;
       case "api":
         return <ApiDocs />;
       default:

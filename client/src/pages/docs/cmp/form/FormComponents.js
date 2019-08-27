@@ -30,17 +30,9 @@ class FormComponents extends React.Component {
   state = {
     showField: null
   };
+ 
 
-  componentDidMount() {
-    debugger;
-    this.props.initialize({
-      firstName: "Initial Name",
-      creationDate: new Date()
-    });
-  }
-
-  onSave = () => {
-    const { values } = this.props;
+  onSave = (values) => { 
     !this.state.showField && alert(JSON.stringify(values));
   };
 
