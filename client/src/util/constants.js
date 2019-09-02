@@ -13,3 +13,9 @@ export const flags = {
   4: { id: 4, name: "Seen Notification", icon: "info", color: "violet" }  
 };
  
+export const commentType = [
+  { id: 1, name: "Log Time" },
+  { id: 2, name: "Ask Question" },
+  { id: 3, name: "Answer Question" },
+  { id: 4, name: "Notification" }
+];
