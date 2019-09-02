@@ -5,11 +5,10 @@ const fakeData = require("../fakeData");
 module.exports = app => {
   app.get("/api/:entity/load/:params?", requireLogin, async (req, res) => {
     var { entity, params } = req.params;
+    console.log('params: ', params);
  
     if (!isNaN(params)) { //If is number
       params = "id@is@(I)" + params;
-    } else if (entity == "task") {
-      params = "name@is@(S)" + params;
     }
 
     const result = await serverProxy.get(
