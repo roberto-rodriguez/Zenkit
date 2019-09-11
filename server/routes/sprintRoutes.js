@@ -4,7 +4,8 @@ const serverProxy = require("./serverProxy");
 module.exports = app => {
   app.get("/api/sprint/get/:id", requireLogin, async (req, res) => {
     var sprintId = req.params && req.params.id;
-
+    console.log(sprintId);
+    
     var query;
 
     if (sprintId && sprintId > 0) {

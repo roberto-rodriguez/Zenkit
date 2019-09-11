@@ -42,7 +42,6 @@ class TaskView extends Component {
   };
 
   render() {
-    console.log(this.state.showDialog, this.state.isLoading);
     const { sprintName } = this.props || "";
     const {
       id,

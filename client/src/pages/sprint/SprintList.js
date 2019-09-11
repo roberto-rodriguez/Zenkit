@@ -3,92 +3,109 @@ import "./SprintBoard.scss";
 import Page from "../common/cmp/Page";
 import * as sprintActions from "./sprint.actions";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
-import List from './List';
-import { Pane, Button , Dialog} from "evergreen-ui";
-
-
+//import { NavLink } from "react-router-dom";
+//import List from "./cmp/List";
+import { Pane, Button } from "evergreen-ui";
+import { reduxForm, Field } from "redux-form";
+import AddSprintForm from "./cmp/AddSprintForm";
+import SelectField from "../common/fields/SelectField";
 
 class SprintList extends Component {
-    constructor(){
-      super()
-      this.state = {
-        isShown : false
-      }
-    }
+  constructor() {
+    super();
+    this.state = {
+      isShown: false,
+      selectvalue: 0
+    };
+    this.SprintAdd = this.SprintAdd.bind(this);
+  }
 
   componentDidMount() {
-    var { list, listSprints } = this.props;
+    var { sprintList, listSprints } = this.props;
 
-    if (!list) {
+    if (!sprintList) {
       listSprints();
     }
   }
 
-  SprintAdd(){
+  SprintAdd = show => {
     this.setState({
-      isShown :  true
+      isShown: show
     });
-  }
+  };
+
+  openSp = () => {
+    this.props.history.push("/sprint/" + this.props.values.sprint);
+  };
 
   render() {
-    var sprintList = this.props.sprintList || [];
     return (
-      <Page>
+      <div>
+        <Page></Page>
+        <br></br>
         <div
-          className="section"
-          style={{ height: 250, width: "100%", backgroundColor: "grey" }}
-        />
-        <br />
-
-      <Pane>
-      <Button
-        children = "Add"
-        iconBefore = "add"
-        appearance = "primary"
-        onClick = {() => this.SprintAdd() }
-      />
-
-      <Dialog
-         isShown={this.state.isShown}
-         title="Insert Sprint"
-         onCloseComplete={() => this.setState({ isShown: false })}
-       >
-      </Dialog>
-      </Pane>
-
-        <div
-          className="section"
-          style={{
-            minHeight: 500,
-            width: "100%"
-          }}
+          className="row"
+          style={{ display: this.state.isShown ? "none" : "" }}
         >
-          {sprintList.map((s, i) => (
-            <List
-              id = {s.id}
-              name = {s.name}
-              active = {s.active}
-              startdate = {s.startDate}
-              enddate = {s.endDate}
-              estimatedhours = {s.hours}
-              loggedhours = {s.loggedHours}
-              completed = {s.completed}
-              />
-            ))}
+          <form onSubmit={this.openSp}>
+            <div className="col ">
+              <Pane marginLeft={100}>
+                <Field
+                  name={"sprint"}
+                  component={SelectField}
+                  label="Sprint"
+                  source="sprint"
+                />
+              </Pane>
+              <Button
+                type="submit"
+                iconBefore="edit"
+                height={32}
+                appearance="primary"
+                marginTop={24}
+                marginLeft={200}
+              >
+                Open Sprint
+              </Button>
+            </div>
+          </form>
+          <div className="col ">
+            <Button
+              type="submit"
+              iconBefore="add"
+              height={32}
+              appearance="primary"
+              marginTop={24}
+              marginLeft={500}
+              onClick={() => this.SprintAdd(true)}
+            >
+              Add Sprint
+            </Button>
+          </div>
         </div>
-
-        <br />
-      </Page>
+        {this.state.isShown ? <AddSprintForm /> : ""}
+      </div>
     );
   }
 }
 
-const mapStateToProps = ({ sprint }) => ({
-  sprintList: sprint.list ? Object.values(sprint.list) : null
-});
+function mapStateToProps({ sprint, form }, props) {
+  const { open, list } = sprint;
 
-export default connect(
-  mapStateToProps,
-  sprintActions
-)(SprintList);
+  return {
+    sprintList: list ? Object.values(list) : null,
+    values: form.sprintForm && form.sprintForm.values
+  };
+}
+
+export default reduxForm({
+  form: "sprintForm",
+  // enableReinitialize: true,
+  //keepDirtyOnReinitialize: true,
+  initialValues: { sprint: 1 }
+})(
+  connect(
+    mapStateToProps,
+    sprintActions
+  )(SprintList)
+);

@@ -2,7 +2,7 @@ import axios from "axios";
 import * as objectUtil from "../../util/object.util";
 
 export const openTask = taskName => async dispatch => {
-  const res = await axios.get("/api/task/load/" + (taskName || null));
+  const res = await axios.get("/api/task/load/" + ("name@is@(S)"+taskName || null));
 
   var task = res.data;
 

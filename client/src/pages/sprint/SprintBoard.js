@@ -13,15 +13,16 @@ class SprintBoard extends Component {
     super(props);
 
     this.state = {
-      showForm: false
+      showForm: false,
+      edit: false
     };
 
     this.showTaskForm = this.showTaskForm.bind(this);
+    this.editForm = this.editForm.bind(this);
   }
 
   componentDidMount() {
     let { sprint, sprintId, openSprint } = this.props;
-
     if (!sprint) {
       openSprint(sprintId);
     }
@@ -32,7 +33,13 @@ class SprintBoard extends Component {
     this.setState({ showForm: show });
   };
 
+  editForm = edit => {
+    this.setState({ edit: edit });
+  };
+
   render() {
+    const test = this.props.open || {};
+
     return (
       <Page fullWidth>
         <div
@@ -57,25 +64,34 @@ class SprintBoard extends Component {
             <SprintBoardHeader
               sprint={this.props.sprint}
               showTaskForm={this.showTaskForm}
+              editForm={this.editForm}
+              initialValues={{
+                name: test.name,
+                startDate: test.startDate,
+                endDate: test.endDate,
+                hours: test.hours
+              }}
             />
           </div>
-          <DragDropContext onDragEnd={this.props.onDragEnd}>
-            <div
-              className="section row sprint-board kanban"
-              style={{
-                minHeight: 500,
-                width: "100%"
-              }}
-            >
-              {Object.keys(taskStatusNames).map(taskStatusId => (
-                <TaskColumn
-                  taskStatusId={taskStatusId}
-                  key={taskStatusId}
-                  history={this.props.history}
-                />
-              ))}
-            </div>
-          </DragDropContext>
+          <div style={{ display: this.state.edit ? "none" : "" }}>
+            <DragDropContext onDragEnd={this.props.onDragEnd}>
+              <div
+                className="section row sprint-board kanban"
+                style={{
+                  minHeight: 500,
+                  width: "100%"
+                }}
+              >
+                {Object.keys(taskStatusNames).map(taskStatusId => (
+                  <TaskColumn
+                    taskStatusId={taskStatusId}
+                    key={taskStatusId}
+                    history={this.props.history}
+                  />
+                ))}
+              </div>
+            </DragDropContext>
+          </div>
         </div>
       </Page>
     );
@@ -91,7 +107,7 @@ function mapStateToProps({ sprint }, props) {
 
   if (sprintId) {
     //If trying to open an Sprint by the id on the url '/sprint/:sprintId'
-    if (open && open.id == sprintId) {
+    if (open && open.id === sprintId) {
       sprintData = { ...open };
     }
   } else {
@@ -100,8 +116,11 @@ function mapStateToProps({ sprint }, props) {
       sprintData = { ...open };
     }
   }
-
-  return { sprint: sprintData, sprintId };
+  return {
+    sprint: sprintData,
+    sprintId,
+    open
+  };
 }
 
 export default connect(
